@@ -7,13 +7,83 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DC7428D21D7F4447001AF8E1 /* CoronaStructures.h in Headers */ = {isa = PBXBuildFile; fileRef = DC7428D11D7F4447001AF8E1 /* CoronaStructures.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DC7428E61D7F44AC001AF8E1 /* BoolList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7428D91D7F44AC001AF8E1 /* BoolList.swift */; };
+		DC7428E71D7F44AC001AF8E1 /* BoolList2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7428DA1D7F44AC001AF8E1 /* BoolList2D.swift */; };
+		DC7428E81D7F44AC001AF8E1 /* CCSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7428DB1D7F44AC001AF8E1 /* CCSound.swift */; };
+		DC7428E91D7F44AC001AF8E1 /* CCSoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7428DC1D7F44AC001AF8E1 /* CCSoundPlayer.swift */; };
+		DC7428EA1D7F44AC001AF8E1 /* Direction2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7428DD1D7F44AC001AF8E1 /* Direction2D.swift */; };
+		DC7428EB1D7F44AC001AF8E1 /* IntPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7428DE1D7F44AC001AF8E1 /* IntPoint.swift */; };
+		DC7428EC1D7F44AC001AF8E1 /* IntPoint+Iterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7428DF1D7F44AC001AF8E1 /* IntPoint+Iterator.swift */; };
+		DC7428ED1D7F44AC001AF8E1 /* IntPoint+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7428E01D7F44AC001AF8E1 /* IntPoint+Operations.swift */; };
+		DC7428EE1D7F44AC001AF8E1 /* SimpleStringParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7428E11D7F44AC001AF8E1 /* SimpleStringParser.swift */; };
+		DC7428EF1D7F44AC001AF8E1 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7428E21D7F44AC001AF8E1 /* Stack.swift */; };
+		DC7428F01D7F44AC001AF8E1 /* TopRoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7428E31D7F44AC001AF8E1 /* TopRoundedView.swift */; };
+		DC7428F11D7F44AC001AF8E1 /* UniversalSaverBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7428E41D7F44AC001AF8E1 /* UniversalSaverBase.swift */; };
+		DC7428F21D7F44AC001AF8E1 /* XMLFileHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7428E51D7F44AC001AF8E1 /* XMLFileHandler.swift */; };
+		DC7429131D7F45A1001AF8E1 /* SCMatrix3Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC74290A1D7F45A1001AF8E1 /* SCMatrix3Array.swift */; };
+		DC7429141D7F45A1001AF8E1 /* SCMatrix4.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC74290B1D7F45A1001AF8E1 /* SCMatrix4.swift */; };
+		DC7429151D7F45A1001AF8E1 /* SCMatrix4+Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC74290C1D7F45A1001AF8E1 /* SCMatrix4+Transformation.swift */; };
+		DC7429161D7F45A1001AF8E1 /* SCMatrix4Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC74290D1D7F45A1001AF8E1 /* SCMatrix4Array.swift */; };
+		DC7429171D7F45A1001AF8E1 /* SCVector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC74290E1D7F45A1001AF8E1 /* SCVector3.swift */; };
+		DC7429181D7F45A1001AF8E1 /* SCVector3+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC74290F1D7F45A1001AF8E1 /* SCVector3+Color.swift */; };
+		DC7429191D7F45A1001AF8E1 /* SCVector3Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7429101D7F45A1001AF8E1 /* SCVector3Array.swift */; };
+		DC74291A1D7F45A1001AF8E1 /* SCVector4.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7429111D7F45A1001AF8E1 /* SCVector4.swift */; };
+		DC74291B1D7F45A1001AF8E1 /* SCVector4+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7429121D7F45A1001AF8E1 /* SCVector4+Color.swift */; };
+		DC74291D1D7F49A3001AF8E1 /* AngleDelta.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC74291C1D7F49A3001AF8E1 /* AngleDelta.swift */; };
+		DC74291F1D7F49AB001AF8E1 /* RotationDelta.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC74291E1D7F49AB001AF8E1 /* RotationDelta.swift */; };
+		DC7429211D7F49B1001AF8E1 /* ScaleDelta.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7429201D7F49B1001AF8E1 /* ScaleDelta.swift */; };
+		DC7429231D7F5572001AF8E1 /* LinearInterpolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7429221D7F5572001AF8E1 /* LinearInterpolation.swift */; };
+		DC7429251D7F55AD001AF8E1 /* LinearInterpolationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7429241D7F55AD001AF8E1 /* LinearInterpolationExtensions.swift */; };
+		DC7429291D7F5612001AF8E1 /* UIColor+Vectors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7429281D7F5612001AF8E1 /* UIColor+Vectors.swift */; };
+		DC74292B1D7F5668001AF8E1 /* CGFloat+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC74292A1D7F5668001AF8E1 /* CGFloat+Random.swift */; };
+		DC7429321D7F58E0001AF8E1 /* CoronaConvenience.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC7429311D7F58D6001AF8E1 /* CoronaConvenience.framework */; };
+		DCC50CCA1D81EDB3007092CA /* AnimationDelta.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC50CC91D81EDB3007092CA /* AnimationDelta.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DC7429301D7F58D6001AF8E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DC74292C1D7F58D6001AF8E1 /* CoronaConvenience.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DC4D07951D7D233A00862432;
+			remoteInfo = CoronaConvenience;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		DC7428CE1D7F4446001AF8E1 /* CoronaStructures.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoronaStructures.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC7428D11D7F4447001AF8E1 /* CoronaStructures.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoronaStructures.h; sourceTree = "<group>"; };
 		DC7428D31D7F4447001AF8E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC7428D91D7F44AC001AF8E1 /* BoolList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoolList.swift; sourceTree = "<group>"; };
+		DC7428DA1D7F44AC001AF8E1 /* BoolList2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoolList2D.swift; sourceTree = "<group>"; };
+		DC7428DB1D7F44AC001AF8E1 /* CCSound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCSound.swift; sourceTree = "<group>"; };
+		DC7428DC1D7F44AC001AF8E1 /* CCSoundPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCSoundPlayer.swift; sourceTree = "<group>"; };
+		DC7428DD1D7F44AC001AF8E1 /* Direction2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Direction2D.swift; sourceTree = "<group>"; };
+		DC7428DE1D7F44AC001AF8E1 /* IntPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntPoint.swift; sourceTree = "<group>"; };
+		DC7428DF1D7F44AC001AF8E1 /* IntPoint+Iterator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IntPoint+Iterator.swift"; sourceTree = "<group>"; };
+		DC7428E01D7F44AC001AF8E1 /* IntPoint+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IntPoint+Operations.swift"; sourceTree = "<group>"; };
+		DC7428E11D7F44AC001AF8E1 /* SimpleStringParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleStringParser.swift; sourceTree = "<group>"; };
+		DC7428E21D7F44AC001AF8E1 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		DC7428E31D7F44AC001AF8E1 /* TopRoundedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopRoundedView.swift; sourceTree = "<group>"; };
+		DC7428E41D7F44AC001AF8E1 /* UniversalSaverBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversalSaverBase.swift; sourceTree = "<group>"; };
+		DC7428E51D7F44AC001AF8E1 /* XMLFileHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLFileHandler.swift; sourceTree = "<group>"; };
+		DC74290A1D7F45A1001AF8E1 /* SCMatrix3Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCMatrix3Array.swift; sourceTree = "<group>"; };
+		DC74290B1D7F45A1001AF8E1 /* SCMatrix4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCMatrix4.swift; sourceTree = "<group>"; };
+		DC74290C1D7F45A1001AF8E1 /* SCMatrix4+Transformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SCMatrix4+Transformation.swift"; sourceTree = "<group>"; };
+		DC74290D1D7F45A1001AF8E1 /* SCMatrix4Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCMatrix4Array.swift; sourceTree = "<group>"; };
+		DC74290E1D7F45A1001AF8E1 /* SCVector3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCVector3.swift; sourceTree = "<group>"; };
+		DC74290F1D7F45A1001AF8E1 /* SCVector3+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SCVector3+Color.swift"; sourceTree = "<group>"; };
+		DC7429101D7F45A1001AF8E1 /* SCVector3Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCVector3Array.swift; sourceTree = "<group>"; };
+		DC7429111D7F45A1001AF8E1 /* SCVector4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCVector4.swift; sourceTree = "<group>"; };
+		DC7429121D7F45A1001AF8E1 /* SCVector4+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SCVector4+Color.swift"; sourceTree = "<group>"; };
+		DC74291C1D7F49A3001AF8E1 /* AngleDelta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AngleDelta.swift; sourceTree = "<group>"; };
+		DC74291E1D7F49AB001AF8E1 /* RotationDelta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotationDelta.swift; sourceTree = "<group>"; };
+		DC7429201D7F49B1001AF8E1 /* ScaleDelta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleDelta.swift; sourceTree = "<group>"; };
+		DC7429221D7F5572001AF8E1 /* LinearInterpolation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearInterpolation.swift; sourceTree = "<group>"; };
+		DC7429241D7F55AD001AF8E1 /* LinearInterpolationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearInterpolationExtensions.swift; sourceTree = "<group>"; };
+		DC7429281D7F5612001AF8E1 /* UIColor+Vectors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Vectors.swift"; sourceTree = "<group>"; };
+		DC74292A1D7F5668001AF8E1 /* CGFloat+Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Random.swift"; sourceTree = "<group>"; };
+		DC74292C1D7F58D6001AF8E1 /* CoronaConvenience.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CoronaConvenience.xcodeproj; path = ../CoronaConvenience/CoronaConvenience.xcodeproj; sourceTree = "<group>"; };
+		DCC50CC91D81EDB3007092CA /* AnimationDelta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationDelta.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -21,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC7429321D7F58E0001AF8E1 /* CoronaConvenience.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -30,6 +101,7 @@
 		DC7428C41D7F4446001AF8E1 = {
 			isa = PBXGroup;
 			children = (
+				DC74292C1D7F58D6001AF8E1 /* CoronaConvenience.xcodeproj */,
 				DC7428D01D7F4447001AF8E1 /* CoronaStructures */,
 				DC7428CF1D7F4446001AF8E1 /* Products */,
 			);
@@ -46,10 +118,55 @@
 		DC7428D01D7F4447001AF8E1 /* CoronaStructures */ = {
 			isa = PBXGroup;
 			children = (
-				DC7428D11D7F4447001AF8E1 /* CoronaStructures.h */,
+				DC74291C1D7F49A3001AF8E1 /* AngleDelta.swift */,
+				DCC50CC91D81EDB3007092CA /* AnimationDelta.swift */,
+				DC7428D91D7F44AC001AF8E1 /* BoolList.swift */,
+				DC7428DA1D7F44AC001AF8E1 /* BoolList2D.swift */,
+				DC7428DB1D7F44AC001AF8E1 /* CCSound.swift */,
+				DC7428DC1D7F44AC001AF8E1 /* CCSoundPlayer.swift */,
+				DC74292A1D7F5668001AF8E1 /* CGFloat+Random.swift */,
+				DC7428DD1D7F44AC001AF8E1 /* Direction2D.swift */,
+				DC7428DE1D7F44AC001AF8E1 /* IntPoint.swift */,
+				DC7428DF1D7F44AC001AF8E1 /* IntPoint+Iterator.swift */,
+				DC7428E01D7F44AC001AF8E1 /* IntPoint+Operations.swift */,
+				DC7429221D7F5572001AF8E1 /* LinearInterpolation.swift */,
+				DC7429241D7F55AD001AF8E1 /* LinearInterpolationExtensions.swift */,
+				DC74291E1D7F49AB001AF8E1 /* RotationDelta.swift */,
+				DC7429201D7F49B1001AF8E1 /* ScaleDelta.swift */,
+				DC7429091D7F4595001AF8E1 /* SCMath */,
+				DC7428E11D7F44AC001AF8E1 /* SimpleStringParser.swift */,
+				DC7428E21D7F44AC001AF8E1 /* Stack.swift */,
+				DC7428E31D7F44AC001AF8E1 /* TopRoundedView.swift */,
+				DC7429281D7F5612001AF8E1 /* UIColor+Vectors.swift */,
+				DC7428E41D7F44AC001AF8E1 /* UniversalSaverBase.swift */,
+				DC7428E51D7F44AC001AF8E1 /* XMLFileHandler.swift */,
 				DC7428D31D7F4447001AF8E1 /* Info.plist */,
 			);
 			path = CoronaStructures;
+			sourceTree = "<group>";
+		};
+		DC7429091D7F4595001AF8E1 /* SCMath */ = {
+			isa = PBXGroup;
+			children = (
+				DC74290A1D7F45A1001AF8E1 /* SCMatrix3Array.swift */,
+				DC74290B1D7F45A1001AF8E1 /* SCMatrix4.swift */,
+				DC74290C1D7F45A1001AF8E1 /* SCMatrix4+Transformation.swift */,
+				DC74290D1D7F45A1001AF8E1 /* SCMatrix4Array.swift */,
+				DC74290E1D7F45A1001AF8E1 /* SCVector3.swift */,
+				DC74290F1D7F45A1001AF8E1 /* SCVector3+Color.swift */,
+				DC7429101D7F45A1001AF8E1 /* SCVector3Array.swift */,
+				DC7429111D7F45A1001AF8E1 /* SCVector4.swift */,
+				DC7429121D7F45A1001AF8E1 /* SCVector4+Color.swift */,
+			);
+			name = SCMath;
+			sourceTree = "<group>";
+		};
+		DC74292D1D7F58D6001AF8E1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DC7429311D7F58D6001AF8E1 /* CoronaConvenience.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -59,7 +176,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC7428D21D7F4447001AF8E1 /* CoronaStructures.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,12 +224,28 @@
 			mainGroup = DC7428C41D7F4446001AF8E1;
 			productRefGroup = DC7428CF1D7F4446001AF8E1 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = DC74292D1D7F58D6001AF8E1 /* Products */;
+					ProjectRef = DC74292C1D7F58D6001AF8E1 /* CoronaConvenience.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				DC7428CD1D7F4446001AF8E1 /* CoronaStructures */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		DC7429311D7F58D6001AF8E1 /* CoronaConvenience.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CoronaConvenience.framework;
+			remoteRef = DC7429301D7F58D6001AF8E1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		DC7428CC1D7F4446001AF8E1 /* Resources */ = {
@@ -130,6 +262,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC7428ED1D7F44AC001AF8E1 /* IntPoint+Operations.swift in Sources */,
+				DC7428EC1D7F44AC001AF8E1 /* IntPoint+Iterator.swift in Sources */,
+				DC7429171D7F45A1001AF8E1 /* SCVector3.swift in Sources */,
+				DC7428EA1D7F44AC001AF8E1 /* Direction2D.swift in Sources */,
+				DC74291A1D7F45A1001AF8E1 /* SCVector4.swift in Sources */,
+				DC7428E61D7F44AC001AF8E1 /* BoolList.swift in Sources */,
+				DC7428F11D7F44AC001AF8E1 /* UniversalSaverBase.swift in Sources */,
+				DC7429141D7F45A1001AF8E1 /* SCMatrix4.swift in Sources */,
+				DC74291F1D7F49AB001AF8E1 /* RotationDelta.swift in Sources */,
+				DC7428E81D7F44AC001AF8E1 /* CCSound.swift in Sources */,
+				DC7429291D7F5612001AF8E1 /* UIColor+Vectors.swift in Sources */,
+				DC74292B1D7F5668001AF8E1 /* CGFloat+Random.swift in Sources */,
+				DC7429181D7F45A1001AF8E1 /* SCVector3+Color.swift in Sources */,
+				DC7428E91D7F44AC001AF8E1 /* CCSoundPlayer.swift in Sources */,
+				DC74291B1D7F45A1001AF8E1 /* SCVector4+Color.swift in Sources */,
+				DC7428EF1D7F44AC001AF8E1 /* Stack.swift in Sources */,
+				DC7429161D7F45A1001AF8E1 /* SCMatrix4Array.swift in Sources */,
+				DC7429231D7F5572001AF8E1 /* LinearInterpolation.swift in Sources */,
+				DC7428EB1D7F44AC001AF8E1 /* IntPoint.swift in Sources */,
+				DC7429251D7F55AD001AF8E1 /* LinearInterpolationExtensions.swift in Sources */,
+				DC7429151D7F45A1001AF8E1 /* SCMatrix4+Transformation.swift in Sources */,
+				DC7429211D7F49B1001AF8E1 /* ScaleDelta.swift in Sources */,
+				DC7428F01D7F44AC001AF8E1 /* TopRoundedView.swift in Sources */,
+				DC7429131D7F45A1001AF8E1 /* SCMatrix3Array.swift in Sources */,
+				DC7428F21D7F44AC001AF8E1 /* XMLFileHandler.swift in Sources */,
+				DC7428E71D7F44AC001AF8E1 /* BoolList2D.swift in Sources */,
+				DC7429191D7F45A1001AF8E1 /* SCVector3Array.swift in Sources */,
+				DCC50CCA1D81EDB3007092CA /* AnimationDelta.swift in Sources */,
+				DC74291D1D7F49A3001AF8E1 /* AngleDelta.swift in Sources */,
+				DC7428EE1D7F44AC001AF8E1 /* SimpleStringParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,12 +396,15 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = CoronaStructures/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Corona-Corporation.CoronaStructures";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Debug;
 		};
@@ -250,12 +415,15 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = CoronaStructures/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Corona-Corporation.CoronaStructures";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Release;
 		};
@@ -278,6 +446,7 @@
 				DC7428D81D7F4447001AF8E1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
