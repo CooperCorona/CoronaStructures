@@ -18,7 +18,6 @@
 		DC7428EE1D7F44AC001AF8E1 /* SimpleStringParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7428E11D7F44AC001AF8E1 /* SimpleStringParser.swift */; };
 		DC7428EF1D7F44AC001AF8E1 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7428E21D7F44AC001AF8E1 /* Stack.swift */; };
 		DC7428F01D7F44AC001AF8E1 /* TopRoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7428E31D7F44AC001AF8E1 /* TopRoundedView.swift */; };
-		DC7428F11D7F44AC001AF8E1 /* UniversalSaverBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7428E41D7F44AC001AF8E1 /* UniversalSaverBase.swift */; };
 		DC7428F21D7F44AC001AF8E1 /* XMLFileHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7428E51D7F44AC001AF8E1 /* XMLFileHandler.swift */; };
 		DC7429131D7F45A1001AF8E1 /* SCMatrix3Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC74290A1D7F45A1001AF8E1 /* SCMatrix3Array.swift */; };
 		DC7429141D7F45A1001AF8E1 /* SCMatrix4.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC74290B1D7F45A1001AF8E1 /* SCMatrix4.swift */; };
@@ -37,6 +36,8 @@
 		DC7429291D7F5612001AF8E1 /* UIColor+Vectors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7429281D7F5612001AF8E1 /* UIColor+Vectors.swift */; };
 		DC74292B1D7F5668001AF8E1 /* CGFloat+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC74292A1D7F5668001AF8E1 /* CGFloat+Random.swift */; };
 		DC7429321D7F58E0001AF8E1 /* CoronaConvenience.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC7429311D7F58D6001AF8E1 /* CoronaConvenience.framework */; };
+		DC99DD6B1D849AD400094BE1 /* SCCloudSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC99DD691D849AD400094BE1 /* SCCloudSingleton.swift */; };
+		DC99DD6C1D849AD400094BE1 /* SCCloudSingleton+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC99DD6A1D849AD400094BE1 /* SCCloudSingleton+Convenience.swift */; };
 		DCC50CCA1D81EDB3007092CA /* AnimationDelta.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC50CC91D81EDB3007092CA /* AnimationDelta.swift */; };
 /* End PBXBuildFile section */
 
@@ -64,7 +65,6 @@
 		DC7428E11D7F44AC001AF8E1 /* SimpleStringParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleStringParser.swift; sourceTree = "<group>"; };
 		DC7428E21D7F44AC001AF8E1 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		DC7428E31D7F44AC001AF8E1 /* TopRoundedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopRoundedView.swift; sourceTree = "<group>"; };
-		DC7428E41D7F44AC001AF8E1 /* UniversalSaverBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversalSaverBase.swift; sourceTree = "<group>"; };
 		DC7428E51D7F44AC001AF8E1 /* XMLFileHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLFileHandler.swift; sourceTree = "<group>"; };
 		DC74290A1D7F45A1001AF8E1 /* SCMatrix3Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCMatrix3Array.swift; sourceTree = "<group>"; };
 		DC74290B1D7F45A1001AF8E1 /* SCMatrix4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCMatrix4.swift; sourceTree = "<group>"; };
@@ -83,6 +83,8 @@
 		DC7429281D7F5612001AF8E1 /* UIColor+Vectors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Vectors.swift"; sourceTree = "<group>"; };
 		DC74292A1D7F5668001AF8E1 /* CGFloat+Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Random.swift"; sourceTree = "<group>"; };
 		DC74292C1D7F58D6001AF8E1 /* CoronaConvenience.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CoronaConvenience.xcodeproj; path = ../CoronaConvenience/CoronaConvenience.xcodeproj; sourceTree = "<group>"; };
+		DC99DD691D849AD400094BE1 /* SCCloudSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCCloudSingleton.swift; sourceTree = "<group>"; };
+		DC99DD6A1D849AD400094BE1 /* SCCloudSingleton+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SCCloudSingleton+Convenience.swift"; sourceTree = "<group>"; };
 		DCC50CC91D81EDB3007092CA /* AnimationDelta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationDelta.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,12 +135,13 @@
 				DC7429241D7F55AD001AF8E1 /* LinearInterpolationExtensions.swift */,
 				DC74291E1D7F49AB001AF8E1 /* RotationDelta.swift */,
 				DC7429201D7F49B1001AF8E1 /* ScaleDelta.swift */,
+				DC99DD691D849AD400094BE1 /* SCCloudSingleton.swift */,
+				DC99DD6A1D849AD400094BE1 /* SCCloudSingleton+Convenience.swift */,
 				DC7429091D7F4595001AF8E1 /* SCMath */,
 				DC7428E11D7F44AC001AF8E1 /* SimpleStringParser.swift */,
 				DC7428E21D7F44AC001AF8E1 /* Stack.swift */,
 				DC7428E31D7F44AC001AF8E1 /* TopRoundedView.swift */,
 				DC7429281D7F5612001AF8E1 /* UIColor+Vectors.swift */,
-				DC7428E41D7F44AC001AF8E1 /* UniversalSaverBase.swift */,
 				DC7428E51D7F44AC001AF8E1 /* XMLFileHandler.swift */,
 				DC7428D31D7F4447001AF8E1 /* Info.plist */,
 			);
@@ -263,12 +266,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC7428ED1D7F44AC001AF8E1 /* IntPoint+Operations.swift in Sources */,
+				DC99DD6B1D849AD400094BE1 /* SCCloudSingleton.swift in Sources */,
 				DC7428EC1D7F44AC001AF8E1 /* IntPoint+Iterator.swift in Sources */,
 				DC7429171D7F45A1001AF8E1 /* SCVector3.swift in Sources */,
+				DC99DD6C1D849AD400094BE1 /* SCCloudSingleton+Convenience.swift in Sources */,
 				DC7428EA1D7F44AC001AF8E1 /* Direction2D.swift in Sources */,
 				DC74291A1D7F45A1001AF8E1 /* SCVector4.swift in Sources */,
 				DC7428E61D7F44AC001AF8E1 /* BoolList.swift in Sources */,
-				DC7428F11D7F44AC001AF8E1 /* UniversalSaverBase.swift in Sources */,
 				DC7429141D7F45A1001AF8E1 /* SCMatrix4.swift in Sources */,
 				DC74291F1D7F49AB001AF8E1 /* RotationDelta.swift in Sources */,
 				DC7428E81D7F44AC001AF8E1 /* CCSound.swift in Sources */,
