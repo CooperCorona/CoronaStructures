@@ -16,9 +16,9 @@ public struct SCVector3: CustomStringConvertible {
     
     // MARK: - Properties
     
-    public let x:CGFloat
-    public let y:CGFloat
-    public let z:CGFloat
+    public var x:CGFloat
+    public var y:CGFloat
+    public var z:CGFloat
     
     public var r:CGFloat {
         

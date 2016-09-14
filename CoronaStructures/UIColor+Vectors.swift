@@ -6,10 +6,16 @@
 //  Copyright © 2016 Cooper Knaak. All rights reserved.
 //
 
+    
 #if os(iOS)
 import UIKit
-
-extension UIColor {
+public typealias ColorType = UIColor
+#else
+import Cocoa
+public typealias ColorType = NSColor
+#endif
+    
+extension ColorType {
     
     public convenience init(vector3:SCVector3) {
         self.init(red: vector3.r, green: vector3.g, blue: vector3.b, alpha: 1.0)
@@ -36,4 +42,3 @@ extension UIColor {
     }//get SCVector4
     
 }
-#endif
