@@ -15,9 +15,9 @@
 // MARK: - Interpolatable Protocol
 
 public protocol Interpolatable {
-    func *(_: CGFloat, _: Self) -> Self
-    func +(_: Self, _: Self) -> Self
-    func -(_: Self, _: Self) -> Self
+    static func *(_: CGFloat, _: Self) -> Self
+    static func +(_: Self, _: Self) -> Self
+    static func -(_: Self, _: Self) -> Self
 }
 
 // MARK: - Interpolatable Conformance
@@ -31,13 +31,13 @@ Interpolates between left and right.
 ```
 - returns: Linear Interpolation of left and right.
 */
-public func linearlyInterpolate<T: Interpolatable>(midX:CGFloat, left:T, right:T) -> T {
+public func linearlyInterpolate<T: Interpolatable>(_ midX:CGFloat, left:T, right:T) -> T {
     return (1.0 - midX) * left + midX * right
 }
 
 // MARK: - Bilinear Interpolation (2D)
 
-public func bilinearlyInterpolate<T: Interpolatable>(mid:CGPoint, leftBelow:T, rightBelow:T, leftAbove:T, rightAbove:T) -> T {
+public func bilinearlyInterpolate<T: Interpolatable>(_ mid:CGPoint, leftBelow:T, rightBelow:T, leftAbove:T, rightAbove:T) -> T {
     
     let below = linearlyInterpolate(mid.x, left: leftBelow, right: rightBelow)
     let above = linearlyInterpolate(mid.x, left: leftAbove, right: rightAbove)
@@ -61,7 +61,7 @@ Values must be in this order:
 ```
 - returns: Bilinear Interpolation of values, nil if there are less then 4 values.
 */
-public func bilinearlyInterpolate<T: Interpolatable>(mid:CGPoint, values:[T]) -> T? {
+public func bilinearlyInterpolate<T: Interpolatable>(_ mid:CGPoint, values:[T]) -> T? {
     if (values.count < 4) {
         return nil
     }
@@ -70,7 +70,7 @@ public func bilinearlyInterpolate<T: Interpolatable>(mid:CGPoint, values:[T]) ->
 }
 
 // MARK: - Trilinear Interpolation (3D)
-public func trilinearlyInterpolate<T: Interpolatable>(mid:SCVector3, leftBelowBehind:T, rightBelowBehind:T, leftAboveBehind:T, rightAboveBehind:T, leftBelowFront:T, rightBelowFront:T, leftAboveFront:T, rightAboveFront:T) -> T {
+public func trilinearlyInterpolate<T: Interpolatable>(_ mid:SCVector3, leftBelowBehind:T, rightBelowBehind:T, leftAboveBehind:T, rightAboveBehind:T, leftBelowFront:T, rightBelowFront:T, leftAboveFront:T, rightAboveFront:T) -> T {
     
     let bilinearMid = CGPoint(x: mid.x, y: mid.y)
     let behind = bilinearlyInterpolate(bilinearMid, leftBelow: leftBelowBehind, rightBelow: rightBelowBehind, leftAbove: leftAboveBehind, rightAbove: rightAboveBehind)
@@ -106,7 +106,7 @@ Values must be in this order:
 ```
 - returns: Trilinear Interpolation of values, nil if there are less than 8 values.
 */
-public func trilinearlyInterpolate<T: Interpolatable>(mid:SCVector3, values:[T]) -> T? {
+public func trilinearlyInterpolate<T: Interpolatable>(_ mid:SCVector3, values:[T]) -> T? {
     if (values.count < 8) {
         return nil
     }

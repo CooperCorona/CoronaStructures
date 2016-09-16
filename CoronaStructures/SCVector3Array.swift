@@ -12,25 +12,25 @@
     import Cocoa
 #endif
 
-public class SCVector3Array: NSObject {
+open class SCVector3Array: NSObject {
    
-    public var values:[GLfloat] = []
+    open var values:[GLfloat] = []
     //3 values per 1 vector
-    public var count:Int { return self.values.count / 3}
+    open var count:Int { return self.values.count / 3}
     
-    public func rangeForIndex(index:Int) -> Range<Int> {
+    open func rangeForIndex(_ index:Int) -> CountableRange<Int> {
         
         return (index * 3)..<(index * 3 + 3)
         
     }//get corresponding range for index
     
-    public func addValues(vectorValues:[GLfloat]) {
+    open func addValues(_ vectorValues:[GLfloat]) {
         
         self.values += vectorValues
         
     }//add values
     
-    public func addVector(vector:SCVector3) {
+    open func addVector(_ vector:SCVector3) {
         
         self.values.append(GLfloat(vector.x))
         self.values.append(GLfloat(vector.y))
@@ -38,34 +38,34 @@ public class SCVector3Array: NSObject {
         
     }//add vector
     
-    public func insertVector(vector:SCVector3, atIndex index:Int) {
+    open func insertVector(_ vector:SCVector3, atIndex index:Int) {
         
         if (index < 0 || index > self.count) {
             return
         }
         
-        self.values.insert(GLfloat(vector.x), atIndex: index * 3 + 0)
-        self.values.insert(GLfloat(vector.y), atIndex: index * 3 + 1)
-        self.values.insert(GLfloat(vector.z), atIndex: index * 3 + 2)
+        self.values.insert(GLfloat(vector.x), at: index * 3 + 0)
+        self.values.insert(GLfloat(vector.y), at: index * 3 + 1)
+        self.values.insert(GLfloat(vector.z), at: index * 3 + 2)
     }//insert vector at index
     
-    public func removeVectorAtIndex(index:Int) {
+    open func removeVectorAtIndex(_ index:Int) {
         
-        self.values.removeRange(self.rangeForIndex(index))
+        self.values.removeSubrange(self.rangeForIndex(index))
         
     }//remove vector at index
     
-    public func removeVectorsInRange(range:Range<Int>) {
+    open func removeVectorsInRange(_ range:Range<Int>) {
         
-        if range.startIndex < 0 || range.endIndex >= self.count {
+        if range.lowerBound < 0 || range.upperBound >= self.count {
             return
         }
         
-        let realRange = (range.startIndex * 3)..<(range.endIndex * 3)
-        self.values.removeRange(realRange)
+        let realRange = (range.lowerBound * 3)..<(range.upperBound * 3)
+        self.values.removeSubrange(realRange)
     }
     
-    public func changeVector(vector:SCVector3, atIndex index:Int) {
+    open func changeVector(_ vector:SCVector3, atIndex index:Int) {
         
         self.values[index * 3 + 0] = GLfloat(vector.x)
         self.values[index * 3 + 1] = GLfloat(vector.y)
@@ -73,11 +73,11 @@ public class SCVector3Array: NSObject {
         
     }//change vector at index
     
-    public func removeAll() {
-        self.values.removeAll(keepCapacity: true)
+    open func removeAll() {
+        self.values.removeAll(keepingCapacity: true)
     }
     
-    public func setVectors(array:SCVector3Array) {
+    open func setVectors(_ array:SCVector3Array) {
         self.values = array.values
     }
     

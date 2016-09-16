@@ -14,7 +14,7 @@
 import CoronaConvenience
 
 public protocol AnimationDeltaProtocol: Interpolatable {
-    func -(_: Self, _: Self) -> Self
+    static func -(_: Self, _: Self) -> Self
 }
 
 public func *(lhs:CGFloat, rhs:Int) -> Int { return Int(lhs * CGFloat(rhs)) }
@@ -28,12 +28,12 @@ extension CGPoint:      AnimationDeltaProtocol {}
 extension SCVector3:    AnimationDeltaProtocol {}
 extension SCVector4:    AnimationDeltaProtocol {}
 
-public class AnimationDelta<T: AnimationDeltaProtocol>: CustomStringConvertible {
+open class AnimationDelta<T: AnimationDeltaProtocol>: CustomStringConvertible {
     
-    public let initialValue:T
-    public let deltaValue:T
+    open let initialValue:T
+    open let deltaValue:T
     
-    public var description:String { return "Initial = \(self.initialValue), Delta = \(self.deltaValue)" }
+    open var description:String { return "Initial = \(self.initialValue), Delta = \(self.deltaValue)" }
     
     public init(start:T, delta:T) {
         
@@ -54,11 +54,11 @@ public class AnimationDelta<T: AnimationDeltaProtocol>: CustomStringConvertible 
         
     }//initialize
     
-    public func valueForTime(time:CGFloat) -> T {
+    open func valueForTime(_ time:CGFloat) -> T {
         return self.initialValue + time * self.deltaValue
     }
     
-    public subscript(time:CGFloat) -> T {
+    open subscript(time:CGFloat) -> T {
         return self.valueForTime(time)
     }
     

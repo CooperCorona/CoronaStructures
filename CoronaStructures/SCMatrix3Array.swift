@@ -8,9 +8,9 @@
 
 import GLKit
 
-public class SCMatrix3Array: NSObject {
+open class SCMatrix3Array: NSObject {
     
-    public var values:[GLfloat] = []
+    open var values:[GLfloat] = []
     
     public init(matrices:[[GLfloat]]) {
         
@@ -21,29 +21,29 @@ public class SCMatrix3Array: NSObject {
         super.init()
     }
     
-    public func rangeForIndex(index:Int) -> Range<Int> {
+    open func rangeForIndex(_ index:Int) -> CountableRange<Int> {
         
         return (9 * index)..<(9 * index + 9)
         
     }//range of values for index
     
-    public func addMatrix(matrix:[GLfloat]) {
+    open func addMatrix(_ matrix:[GLfloat]) {
         
         self.values += matrix
         
     }//add matrix
     
-    public func removeMatrixAtIndex(index:Int) {
+    open func removeMatrixAtIndex(_ index:Int) {
         
         let range = self.rangeForIndex(index)
-        self.values.removeRange(range)
+        self.values.removeSubrange(range)
         
     }//remove matrix at index
     
-    public func changeMatrix(matrix:[GLfloat], atIndex index:Int) {
+    open func changeMatrix(_ matrix:[GLfloat], atIndex index:Int) {
         
         let range = self.rangeForIndex(index)
-        self.values.replaceRange(range, with: matrix)
+        self.values.replaceSubrange(range, with: matrix)
         
     }//change matrix at index
     

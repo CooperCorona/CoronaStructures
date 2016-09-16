@@ -15,17 +15,17 @@
 public typealias Rotation = (angle:CGFloat, vector:SCVector3)
 public typealias TwoStepRotation = (first:Rotation, second:Rotation?)
 
-public class RotationDelta: NSObject {
+open class RotationDelta: NSObject {
 
-    public let startRotation:Rotation
-    public let endRotation:Rotation
-    public let deltaRotation:Rotation
-    public let duration:CGFloat
-    private var time:CGFloat = 0.0
-    public var percent:CGFloat { return self.time / self.duration }
+    open let startRotation:Rotation
+    open let endRotation:Rotation
+    open let deltaRotation:Rotation
+    open let duration:CGFloat
+    fileprivate var time:CGFloat = 0.0
+    open var percent:CGFloat { return self.time / self.duration }
     
-    private var finished = false
-    public var isFinished:Bool { return self.finished }
+    fileprivate var finished = false
+    open var isFinished:Bool { return self.finished }
     
     public init(start:Rotation, end:Rotation, duration:CGFloat) {
         
@@ -38,7 +38,7 @@ public class RotationDelta: NSObject {
         
     }//initialize
     
-    public func update(dt:CGFloat) -> Rotation {
+    open func update(_ dt:CGFloat) -> Rotation {
         self.time += dt
 
         if (self.time >= self.duration) {
@@ -48,13 +48,13 @@ public class RotationDelta: NSObject {
         return self.getRotation()
     }//update and get rotation
     
-    public func getRotation() -> Rotation {
+    open func getRotation() -> Rotation {
         let angle = self.startRotation.angle + self.deltaRotation.angle * self.percent
         let vector = self.startRotation.vector + self.deltaRotation.vector * self.percent
         return (angle, vector)
     }
     
-    public class func incrementVector(start:SCVector3, toVector end:SCVector3, deltaAngle:CGFloat) -> SCVector3 {
+    open class func incrementVector(_ start:SCVector3, toVector end:SCVector3, deltaAngle:CGFloat) -> SCVector3 {
         
         let startLength = start.length()
         let endLength = end.length()
@@ -79,9 +79,9 @@ public class RotationDelta: NSObject {
         return currentVector
     }//increment vector towards vector
     
-    public class func rotationForString(string:String) -> Rotation {
+    open class func rotationForString(_ string:String) -> Rotation {
         
-        let comps = string.componentsSeparatedByString(", ") as [NSString]
+        let comps = string.components(separatedBy: ", ") as [NSString]
         
         if (comps.count <= 3) {
             return (0.0, SCVector3.k)
@@ -104,9 +104,9 @@ public class RotationDelta: NSObject {
         return (angle, SCVector3(xValue: x, yValue: y, zValue: z))
     }//get rotation for string
     
-    public class func twoStepRotationForString(string:String) -> TwoStepRotation {
+    open class func twoStepRotationForString(_ string:String) -> TwoStepRotation {
         
-        let comps = string.componentsSeparatedByString(", ") as [NSString]
+        let comps = string.components(separatedBy: ", ") as [NSString]
         
         if (comps.count < 8) {
             return (self.rotationForString(string), nil)

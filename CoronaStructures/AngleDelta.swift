@@ -12,11 +12,11 @@
     import Cocoa
 #endif
 
-public class AngleDelta: NSObject {
+open class AngleDelta: NSObject {
     
-    public class var π:CGFloat { return CGFloat(M_PI) }
+    open class var π:CGFloat { return CGFloat(M_PI) }
     
-    public class func incrementAngle(startAngle:CGFloat, toAngle endAngle:CGFloat, delta:CGFloat) -> CGFloat {
+    open class func incrementAngle(_ startAngle:CGFloat, toAngle endAngle:CGFloat, delta:CGFloat) -> CGFloat {
     
         if (abs(startAngle - endAngle) <= self.π) {
             return self.internalIncrementAngle(startAngle, toAngle: endAngle, delta: delta)
@@ -37,7 +37,7 @@ public class AngleDelta: NSObject {
         
     }//increment angle so it gets closer to other angle
     
-    private class func internalIncrementAngle(startAngle:CGFloat, toAngle endAngle:CGFloat, delta:CGFloat) -> CGFloat {
+    fileprivate class func internalIncrementAngle(_ startAngle:CGFloat, toAngle endAngle:CGFloat, delta:CGFloat) -> CGFloat {
         
         var angle = startAngle
             if (abs(angle - endAngle) <= delta / 2.0) {
@@ -57,7 +57,7 @@ public class AngleDelta: NSObject {
         return angle
     }//increment angle
     
-    public class func constrainAngle(angle:CGFloat) -> CGFloat {
+    open class func constrainAngle(_ angle:CGFloat) -> CGFloat {
     
         if (angle > CGFloat(M_PI)) {
             return angle - 2.0 * self.π

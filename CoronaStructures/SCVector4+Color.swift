@@ -48,7 +48,7 @@ public extension SCVector4 {
             self.purpleColor]
     }
     
-    public static func rainbowColorAtIndex(index:Int) -> SCVector4 {
+    public static func rainbowColorAtIndex(_ index:Int) -> SCVector4 {
         let rcs = SCVector4.rainbowColors
         return rcs[index % rcs.count]
     }

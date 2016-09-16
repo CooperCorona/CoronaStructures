@@ -16,29 +16,29 @@ public typealias XMLDictionary = [String:String]
 
 @objc public protocol XMLFileHandlerDelegate {
     
-    func startElement(elementName:String, attributes:XMLDictionary)
-    optional func endElement(elementName:String)
+    func startElement(_ elementName:String, attributes:XMLDictionary)
+    @objc optional func endElement(_ elementName:String)
     
-    optional func handleVariable(attributes:XMLDictionary)
+    @objc optional func handleVariable(_ attributes:XMLDictionary)
     
-    optional func finishedParsing()
+    @objc optional func finishedParsing()
     
-    optional func documentEnded()
+    @objc optional func documentEnded()
     
 }
 
 
-public class XMLFileHandler: NSObject, NSXMLParserDelegate {
+open class XMLFileHandler: NSObject, XMLParserDelegate {
     
     unowned let delegate:XMLFileHandlerDelegate
     
-    public var parser:NSXMLParser? = nil
-    public var parseIndex = 0
+    open var parser:XMLParser? = nil
+    open var parseIndex = 0
     
-    public let files:[String]
-    public let directory:String?
+    open let files:[String]
+    open let directory:String?
     
-    public var variables:[String:String] = ["π":"3.14159"]
+    open var variables:[String:String] = ["π":"3.14159"]
     
     
     public init(files:[String], directory:String?, delegate:XMLFileHandlerDelegate) {
@@ -56,20 +56,20 @@ public class XMLFileHandler: NSObject, NSXMLParserDelegate {
         self.init(files:[file], directory:directory, delegate:delegate)
     }//initialize
     
-    public func loadFile() {
+    open func loadFile() {
         
         while (self.parseIndex < self.files.count) {
             
             let path = XMLFileHandler.pathForFile(files[parseIndex], directory: directory, fileExtension: "xml")
-            let pathWithoutDirectory = NSBundle.mainBundle().pathForResource(files[parseIndex], ofType: "xml")
+            let pathWithoutDirectory = Bundle.main.path(forResource: files[parseIndex], ofType: "xml")
             
-            if let data = NSData(contentsOfFile: path) {
+            if let data = try? Data(contentsOf: URL(fileURLWithPath: path)) {
                 
                 self.parseData(data)
                 
             } else if let bundlePath = pathWithoutDirectory {
                 
-                if let data = NSData(contentsOfFile: bundlePath) {
+                if let data = try? Data(contentsOf: URL(fileURLWithPath: bundlePath)) {
                     
                     
                     self.parseData(data)
@@ -85,9 +85,9 @@ public class XMLFileHandler: NSObject, NSXMLParserDelegate {
         
     }//load file
     
-    public func parseData(data:NSData) {
+    open func parseData(_ data:Data) {
         
-        self.parser = NSXMLParser(data: data)
+        self.parser = XMLParser(data: data)
         
         if let validParser = self.parser {
             
@@ -101,7 +101,7 @@ public class XMLFileHandler: NSObject, NSXMLParserDelegate {
         
     }//parse data
     
-    public func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
+    open func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         
 //        let aDict = attributeDict.map() { (keyValue:(String, String)) -> (NSObject, AnyObject) in return (keyValue.0, keyValue.1) }
         
@@ -116,7 +116,7 @@ public class XMLFileHandler: NSObject, NSXMLParserDelegate {
         
     }
     
-    public func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+    open func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         
         if (elementName == "Variable") {
             return
@@ -125,28 +125,28 @@ public class XMLFileHandler: NSObject, NSXMLParserDelegate {
         self.delegate.endElement?(elementName)
     }
     
-    public func parserDidEndDocument(parser: NSXMLParser) {
+    open func parserDidEndDocument(_ parser: XMLParser) {
         self.delegate.documentEnded?()
     }//parser did end document
     
-    public class func pathForFile(file:String, directory:String?, fileExtension:String) -> String {
-        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+    open class func pathForFile(_ file:String, directory:String?, fileExtension:String) -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let documentDirectoryPath = paths[0] as NSString
         
         var filePath = documentDirectoryPath
         
         if let validDirectory = directory {
-            filePath = filePath.stringByAppendingPathComponent(validDirectory)
+            filePath = filePath.appendingPathComponent(validDirectory) as NSString
         }
         
-        filePath = filePath.stringByAppendingPathComponent(file)
-        filePath = filePath.stringByAppendingPathExtension(fileExtension)!
+        filePath = filePath.appendingPathComponent(file) as NSString
+        filePath = filePath.appendingPathExtension(fileExtension)! as NSString
         
         return filePath as String
     }//get path
     
     
-    public func handleVariable(attributes:XMLDictionary) {
+    open func handleVariable(_ attributes:XMLDictionary) {
         
         let name = attributes["name"]!
         let value = attributes["value"]!
@@ -154,7 +154,7 @@ public class XMLFileHandler: NSObject, NSXMLParserDelegate {
         self.variables[name] = value
     }//handle variables
     
-    public subscript(key:String) -> String? {
+    open subscript(key:String) -> String? {
         get {
             return self.variables[key]
         }
@@ -163,7 +163,7 @@ public class XMLFileHandler: NSObject, NSXMLParserDelegate {
         }
     }
     
-    public class func convertDictionary(dict:[NSObject:AnyObject]) -> XMLDictionary {
+    open class func convertDictionary(_ dict:[AnyHashable: Any]) -> XMLDictionary {
         var d:XMLDictionary = [:]
         for case let (key as String, value as String) in dict {
             d[key] = value
@@ -175,9 +175,9 @@ public class XMLFileHandler: NSObject, NSXMLParserDelegate {
 
 public extension XMLFileHandler {
     
-    public class func convertStringToVector3(str:String) -> SCVector3 {
+    public class func convertStringToVector3(_ str:String) -> SCVector3 {
         
-        let comps = str.componentsSeparatedByString(", ")
+        let comps = str.components(separatedBy: ", ")
         
         let x = CGFloat((comps[0] as NSString).doubleValue)
         let y = CGFloat((comps[1] as NSString).doubleValue)
@@ -186,9 +186,9 @@ public extension XMLFileHandler {
         return SCVector3(values: (x, y, z))
     }//convert string to vector 3
     
-    public class func convertStringToVector4(str:String) -> SCVector4 {
+    public class func convertStringToVector4(_ str:String) -> SCVector4 {
         
-        let comps = str.componentsSeparatedByString(", ")
+        let comps = str.components(separatedBy: ", ")
         
         let x = CGFloat((comps[0] as NSString).doubleValue)
         let y = CGFloat((comps[1] as NSString).doubleValue)

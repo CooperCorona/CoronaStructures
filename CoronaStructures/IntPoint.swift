@@ -61,7 +61,7 @@ public struct IntPoint: CustomStringConvertible, Hashable {
     // MARK: - Logic
     
     ///Returns true if 0 <= x < width and 0 <= y < height.
-    public func withinGridWidth(width:Int, height:Int) -> Bool {
+    public func withinGridWidth(_ width:Int, height:Int) -> Bool {
         return 0 <= self.x && self.x < width && 0 <= self.y && self.y < height
     }
     
@@ -78,7 +78,7 @@ public struct IntPoint: CustomStringConvertible, Hashable {
     }
     
     ///Uses manhattan distance, becaase euclidian distance just doesn't make sense.
-    public func distance(point:IntPoint) -> Int {
+    public func distance(_ point:IntPoint) -> Int {
         return abs(point.x - self.x) + abs(point.y - self.y)
     }
 
@@ -130,7 +130,7 @@ public struct IntPoint: CustomStringConvertible, Hashable {
         return IntPoint.mooreTiles().map() { self + $0 }
     }
 
-    public static func iterateRectangle(size:IntPoint, handler:(IntPoint) -> Void) {
+    public static func iterateRectangle(_ size:IntPoint, handler:(IntPoint) -> Void) {
         for j in 0..<size.y {
             for i in 0..<size.x {
                 handler(IntPoint(x: i, y: j))
@@ -138,7 +138,7 @@ public struct IntPoint: CustomStringConvertible, Hashable {
         }
     }
     
-    public static func iterateWidth(width:Int, height:Int, handler:(IntPoint) -> Void) {
+    public static func iterateWidth(_ width:Int, height:Int, handler:(IntPoint) -> Void) {
         return IntPoint.iterateRectangle(IntPoint(x: width, y: height), handler: handler)
     }
 }

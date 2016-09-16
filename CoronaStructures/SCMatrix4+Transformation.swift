@@ -15,7 +15,7 @@ import Accelerate
 public extension SCMatrix4 {
     
     //Functions
-    public func getRow(rowIndex:Int) -> SCVector4? {
+    public func getRow(_ rowIndex:Int) -> SCVector4? {
         if (rowIndex < 0 || rowIndex > 3) {
             return nil
         }//invalid row
@@ -24,7 +24,7 @@ public extension SCMatrix4 {
         return SCVector4(xValue: CGFloat(values[index]), yValue: CGFloat(values[index + 1]), zValue: CGFloat(values[index + 2]), wValue: CGFloat(values[index + 3]))
     }//get row
     
-    public func getColumn(columnIndex:Int) -> SCVector4? {
+    public func getColumn(_ columnIndex:Int) -> SCVector4? {
         if (columnIndex < 0 || columnIndex > 3) {
             return nil
         }//invalid column
@@ -105,35 +105,35 @@ public extension SCMatrix4 {
     
     
     //Operations
-    public func translateBy(vector:SCVector3) -> SCMatrix4 {
+    public func translateBy(_ vector:SCVector3) -> SCMatrix4 {
         return self.translateByX(vector.x, byY: vector.y, byZ: vector.z)
     }//translate by
     
-    public func translateByX(byX:CGFloat, byY:CGFloat, byZ:CGFloat = 0.0) -> SCMatrix4 {
+    public func translateByX(_ byX:CGFloat, byY:CGFloat, byZ:CGFloat = 0.0) -> SCMatrix4 {
         return self * SCMatrix4(x: byX, y: byY, z: byZ)
     }//translate
     
-    public func scaleByX(byX:CGFloat, byY:CGFloat, byZ:CGFloat = 1.0) -> SCMatrix4 {
+    public func scaleByX(_ byX:CGFloat, byY:CGFloat, byZ:CGFloat = 1.0) -> SCMatrix4 {
         return self * SCMatrix4(scaleX: byX, scaleY: byY, scaleZ: byZ)
     }//scale
     
-    public func rotate2D(byTheta:CGFloat) -> SCMatrix4 {
+    public func rotate2D(_ byTheta:CGFloat) -> SCMatrix4 {
         return self * SCMatrix4(rotation2D: byTheta)
     }//rotate (2D)
     
-    public func rotate(angle:CGFloat, about:SCVector3) -> SCMatrix4 {
+    public func rotate(_ angle:CGFloat, about:SCVector3) -> SCMatrix4 {
         
         return self * SCMatrix4(rotate: angle, about: about)
         
     }//rotate
     
-    public func rotate(rotation:Rotation) -> SCMatrix4 {
+    public func rotate(_ rotation:Rotation) -> SCMatrix4 {
         
         return self.rotate(rotation.angle, about: rotation.vector)
         
     }//rotate
     
-    public func rotate(rotations:TwoStepRotation) -> SCMatrix4 {
+    public func rotate(_ rotations:TwoStepRotation) -> SCMatrix4 {
         
         if let second = rotations.second {
             

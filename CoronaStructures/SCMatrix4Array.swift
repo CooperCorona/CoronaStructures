@@ -12,11 +12,11 @@
     import Cocoa
 #endif
 
-public class SCMatrix4Array: NSObject {
+open class SCMatrix4Array: NSObject {
 
-    public var values:[GLfloat] = []
+    open var values:[GLfloat] = []
     //16 values per 1 matrix
-    public var count:Int { return self.values.count / 16}
+    open var count:Int { return self.values.count / 16}
     
     public init(matrices:[SCMatrix4]) {
         
@@ -27,19 +27,19 @@ public class SCMatrix4Array: NSObject {
         super.init()
     }
     
-    public func rangeForIndex(index:Int) -> Range<Int> {
+    open func rangeForIndex(_ index:Int) -> CountableRange<Int> {
         
         return (16 * index)..<(16 * index + 16)
         
     }//range of values for index
     
-    public func addMatrix(matrix:SCMatrix4) {
+    open func addMatrix(_ matrix:SCMatrix4) {
         
         self.values += matrix.values
         
     }//add matrix
     
-    public func insertMatrix(matrix:SCMatrix4, atIndex index:Int) {
+    open func insertMatrix(_ matrix:SCMatrix4, atIndex index:Int) {
         
         if (index < 0 || index > self.count) {
             return
@@ -48,35 +48,35 @@ public class SCMatrix4Array: NSObject {
         var matrixIndex = 0
         let range = self.rangeForIndex(index)
         for iii in range {
-            self.values.insert(matrix.values[matrixIndex], atIndex: iii)
+            self.values.insert(matrix.values[matrixIndex], at: iii)
             matrixIndex += 1
         }
     }//insert matrix at index
     
-    public func removeMatrixAtIndex(index:Int) {
+    open func removeMatrixAtIndex(_ index:Int) {
         
         let range = self.rangeForIndex(index)
-        self.values.removeRange(range)
+        self.values.removeSubrange(range)
         
     }//remove matrix at index
     
-    public func removeMatricesInRange(range:Range<Int>) {
+    open func removeMatricesInRange(_ range:Range<Int>) {
         
-        if range.startIndex < 0 || range.endIndex >= self.count {
+        if range.lowerBound < 0 || range.upperBound >= self.count {
             return
         }
         
-        let realRange = (range.startIndex * 16)..<(range.endIndex * 16)
-        self.values.removeRange(realRange)
+        let realRange = (range.lowerBound * 16)..<(range.upperBound * 16)
+        self.values.removeSubrange(realRange)
     }
     
-    public func changeMatrix(matrix:SCMatrix4, atIndex index:Int) {
+    open func changeMatrix(_ matrix:SCMatrix4, atIndex index:Int) {
         
         let range = self.rangeForIndex(index)
-        self.values.replaceRange(range, with: matrix.values)
+        self.values.replaceSubrange(range, with: matrix.values)
     }//change matrix at index
     
-    public func changeMatrix_Fast2D(matrix:SCMatrix4, atIndex index:Int) {
+    open func changeMatrix_Fast2D(_ matrix:SCMatrix4, atIndex index:Int) {
         
         let startIndex = index * 16
         self.values[startIndex     ] = matrix.values[0 ]
@@ -88,15 +88,15 @@ public class SCMatrix4Array: NSObject {
         self.values[startIndex + 14] = matrix.values[14]
     }//change matrix at index (using only 2d components)
     
-    public func removeAll() {
-        self.values.removeAll(keepCapacity: true)
+    open func removeAll() {
+        self.values.removeAll(keepingCapacity: true)
     }//remove all
     
-    public func setMatrices(array:SCMatrix4Array) {
+    open func setMatrices(_ array:SCMatrix4Array) {
         self.values = array.values
     }
     
-    public subscript(index:Int) -> SCMatrix4 {
+    open subscript(index:Int) -> SCMatrix4 {
         get {
             var array:[GLfloat] = []
             for iii in (index * 16..<index * 16 + 16) {
@@ -110,7 +110,7 @@ public class SCMatrix4Array: NSObject {
     }
     
     
-    public override var description:String {
+    open override var description:String {
         var str = ""
         for iii in 0..<self.count {
             str += "[\(iii)]: \(self[iii])\n"

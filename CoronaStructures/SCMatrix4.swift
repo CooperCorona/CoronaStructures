@@ -217,7 +217,7 @@ public struct SCMatrix4 : CustomStringConvertible {
         self.init(rotation: rotations.first)
         
         if let second = rotations.second {
-            self.rotate(second.angle, about: second.vector)
+            let _ = self.rotate(second.angle, about: second.vector)
         }
     }
     
@@ -319,7 +319,7 @@ public struct SCMatrix4 : CustomStringConvertible {
     }//ortho projection
     
     
-    public static func perspective(angle:CGFloat, aspect:CGFloat, near:CGFloat, far:CGFloat) -> SCMatrix4 {
+    public static func perspective(_ angle:CGFloat, aspect:CGFloat, near:CGFloat, far:CGFloat) -> SCMatrix4 {
         
         let scale:CGFloat = tan(angle / 2.0) * near
         let right:CGFloat = aspect * scale
@@ -343,7 +343,7 @@ public struct SCMatrix4 : CustomStringConvertible {
         */
     }//perspective projection
     
-    public static func frustum(left:CGFloat, right:CGFloat, bottom:CGFloat, top:CGFloat, near:CGFloat, far:CGFloat) -> SCMatrix4 {
+    public static func frustum(_ left:CGFloat, right:CGFloat, bottom:CGFloat, top:CGFloat, near:CGFloat, far:CGFloat) -> SCMatrix4 {
         
         var array:[GLfloat] =   [0.0, 0.0, 0.0, 0.0,
             0.0, 0.0, 0.0, 0.0,
@@ -414,7 +414,7 @@ public func *(left:SCMatrix4, right:SCMatrix4) -> SCMatrix4 {
     return SCMatrix4(array: vals)
 }//multiply matrices
 
-public func *=(inout left:SCMatrix4, right:SCMatrix4) {
+public func *=(left:inout SCMatrix4, right:SCMatrix4) {
     left = left * right
 }//assign and multiply matrices
 
@@ -456,18 +456,18 @@ public func *(left:SCMatrix4, right:CGPoint) -> CGPoint {
 //it is impossible to compute 4x1 * 4x4
 //However, I do allow SCVector *= SCMatrix4
 //because there is no other way to do assign it
-public func *=(inout left:SCVector4, right:SCMatrix4) {
+public func *=(left:inout SCVector4, right:SCMatrix4) {
     left = right * left
 }//assign and multiply matrix and vector
 
 //Same as { SCVector4 * SCMatrix4 }, except with 3-D point
-public func *=(inout left:SCVector3, right:SCMatrix4) {
+public func *=(left:inout SCVector3, right:SCMatrix4) {
     
     left = right * left
     
 }//assign and multiply matrix and 3-D point
 
 //Same as { SCVector4 * SCMatrix4 }, except with 2-D point
-public func *=(inout left:CGPoint, right:SCMatrix4) {
+public func *=(left:inout CGPoint, right:SCMatrix4) {
     left = right * left
 }//assign and multiply matrix and 2-D point

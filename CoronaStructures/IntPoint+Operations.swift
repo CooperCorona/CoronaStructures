@@ -18,7 +18,7 @@ public func +(lhs:IntPoint, rhs:IntPoint) -> IntPoint {
     return IntPoint(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
 }
 
-public func +=(inout lhs:IntPoint, rhs:IntPoint) {
+public func +=(lhs:inout IntPoint, rhs:IntPoint) {
     return lhs = lhs + rhs
 }
 
@@ -26,7 +26,7 @@ public func -(lhs:IntPoint, rhs:IntPoint) -> IntPoint {
     return IntPoint(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
 }
 
-public func -=(inout lhs:IntPoint, rhs:IntPoint) {
+public func -=(lhs:inout IntPoint, rhs:IntPoint) {
     return lhs = lhs - rhs
 }
 
@@ -34,7 +34,7 @@ public func *(lhs:IntPoint, rhs:IntPoint) -> IntPoint {
     return IntPoint(x: lhs.x * rhs.x, y: lhs.y * rhs.y)
 }
 
-public func *=(inout lhs:IntPoint, rhs:IntPoint) {
+public func *=(lhs:inout IntPoint, rhs:IntPoint) {
     return lhs = lhs * rhs
 }
 
@@ -42,7 +42,7 @@ public func /(lhs:IntPoint, rhs:IntPoint) -> IntPoint {
     return IntPoint(x: lhs.x / rhs.x, y: lhs.y / rhs.y)
 }
 
-public func /=(inout lhs:IntPoint, rhs:IntPoint) {
+public func /=(lhs:inout IntPoint, rhs:IntPoint) {
     return lhs = lhs / rhs
 }
 
@@ -56,7 +56,7 @@ public func +(lhs:Int, rhs:IntPoint) -> IntPoint {
     return IntPoint(x: lhs + rhs.x, y: lhs + rhs.y)
 }
 
-public func +=(inout lhs:IntPoint, rhs:Int) {
+public func +=(lhs:inout IntPoint, rhs:Int) {
     lhs = lhs + rhs
 }
 
@@ -68,7 +68,7 @@ public func -(lhs:Int, rhs:IntPoint) -> IntPoint {
     return IntPoint(x: lhs - rhs.x, y: lhs - rhs.y)
 }
 
-public func -=(inout lhs:IntPoint, rhs:Int) {
+public func -=(lhs:inout IntPoint, rhs:Int) {
     lhs = lhs - rhs
 }
 
@@ -80,7 +80,7 @@ public func *(lhs:Int, rhs:IntPoint) -> IntPoint {
     return IntPoint(x: lhs * rhs.x, y: lhs * rhs.y)
 }
 
-public func *=(inout lhs:IntPoint, rhs:Int) {
+public func *=(lhs:inout IntPoint, rhs:Int) {
     lhs = lhs * rhs
 }
 
@@ -92,6 +92,6 @@ public func /(lhs:Int, rhs:IntPoint) -> IntPoint {
     return IntPoint(x: lhs / rhs.x, y: lhs / rhs.y)
 }
 
-public func /=(inout lhs:IntPoint, rhs:Int) {
+public func /=(lhs:inout IntPoint, rhs:Int) {
     lhs = lhs / rhs
 }

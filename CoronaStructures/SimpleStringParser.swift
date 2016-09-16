@@ -12,32 +12,34 @@
     import Cocoa
 #endif
 
-public class SimpleStringParser: NSObject {
+open class SimpleStringParser: NSObject {
     
-    private enum ParseError {
-        case MissingVariable(String)
-        case TooManyOperations
+    fileprivate enum ParseError {
+        case missingVariable(String)
+        case tooManyOperations
     }
     
-    public static var defaultVariables:[String:VariableType] = ["π":3.14159265]
+    open static var defaultVariables:[String:VariableType] = ["π":3.14159265]
     public typealias VariableType = CGFloat
-    public static let ParseErrorDomain =   "CC SimpleStringParser::ParseErrorDomain"
+    open static let ParseErrorDomain =   "CC SimpleStringParser::ParseErrorDomain"
     
-    public let string:String
-    public let variables:[String:VariableType]
-    public let alphanumericCharacters:NSMutableCharacterSet
-    public let whitespaceCharacters = NSCharacterSet.whitespaceCharacterSet()
-    public let numericCharacters = NSCharacterSet(charactersInString: "0123456789.")
-    public let operationCharacters = NSCharacterSet(charactersInString: "+-/*")
+    open let string:String
+    open let variables:[String:VariableType]
+    open let alphanumericCharacters:CharacterSet
+    open let whitespaceCharacters = CharacterSet.whitespaces
+    open let numericCharacters = CharacterSet(charactersIn: "0123456789.")
+    open let operationCharacters = CharacterSet(charactersIn: "+-/*")
     
     public init(string:String, variables:[String:VariableType] = SimpleStringParser.defaultVariables) {
         
-        self.alphanumericCharacters = NSMutableCharacterSet.alphanumericCharacterSet()
-        self.alphanumericCharacters.formUnionWithCharacterSet(NSCharacterSet.whitespaceCharacterSet())
-        self.alphanumericCharacters.formUnionWithCharacterSet(NSCharacterSet(charactersInString: "."))
+        var aChars = CharacterSet.alphanumerics
+        aChars = CharacterSet.alphanumerics
+        aChars.formUnion(CharacterSet.whitespaces)
+        aChars.formUnion(CharacterSet(charactersIn: "."))
         for (key, _) in variables {
-            self.alphanumericCharacters.formUnionWithCharacterSet(NSCharacterSet(charactersInString: key))
+            aChars.formUnion(CharacterSet(charactersIn: key))
         }
+        self.alphanumericCharacters = aChars
         
         
         self.string = string
@@ -49,7 +51,7 @@ public class SimpleStringParser: NSObject {
         return self.variables[key]
     }//subscript (for variables)
     
-    public func valueForString(string:String) -> VariableType? {
+    open func valueForString(_ string:String) -> VariableType? {
         
         if let value = self[string] {
             return value
@@ -61,7 +63,7 @@ public class SimpleStringParser: NSObject {
         
     }
     
-    public func parse() throws -> VariableType {
+    open func parse() throws -> VariableType {
         var error: NSError! = NSError(domain: "Migrator", code: 0, userInfo: nil)
         
         if let initialValue = self.valueForString(self.string) {
@@ -80,7 +82,7 @@ public class SimpleStringParser: NSObject {
         let (comps, opers) = self.getComponentsAndOperations()
         
         if (opers.count >= comps.count) {
-            throw self.getErrorForCode(ParseError.TooManyOperations)
+            throw self.getErrorForCode(ParseError.tooManyOperations)
         }
         
         /*  The two arguments that correspond to each number
@@ -105,7 +107,7 @@ public class SimpleStringParser: NSObject {
                 return finalValue
             }
             
-            for (iii, curOperator) in addOpers.enumerate() {
+            for (iii, curOperator) in addOpers.enumerated() {
                 
                 do {
                     let nextValue = try self.getNextValueForIndex(iii, curOperator: curOperator, addComps: addComps, final: finalValue)
@@ -145,20 +147,20 @@ public class SimpleStringParser: NSObject {
         }
     }//parse
     */
-    private func getComponentsAndOperations() -> (components:[String], operations:[String]) {
+    fileprivate func getComponentsAndOperations() -> (components:[String], operations:[String]) {
         
-        var comps = self.string.componentsSeparatedByCharactersInSet(self.operationCharacters)
-        comps = comps.map()     { $0.stringByTrimmingCharactersInSet(self.whitespaceCharacters) }
+        var comps = self.string.components(separatedBy: self.operationCharacters)
+        comps = comps.map()     { $0.trimmingCharacters(in: self.whitespaceCharacters) }
         comps = comps.filter()  { $0 != "" }
         
-        var opers = self.string.componentsSeparatedByCharactersInSet(self.alphanumericCharacters)
-        opers = opers.map()     { $0.stringByTrimmingCharactersInSet(self.whitespaceCharacters) }
+        var opers = self.string.components(separatedBy: self.alphanumericCharacters)
+        opers = opers.map()     { $0.trimmingCharacters(in: self.whitespaceCharacters) }
         opers = opers.filter()  { $0 != "" }
         
         return (comps, opers)
     }//get component and operation arrays
     
-    private func getAdditionSubtractionComponentsFrom(comps:[String], operations opers:[String]) throws -> (add:[String], oper:[String]) {
+    fileprivate func getAdditionSubtractionComponentsFrom(_ comps:[String], operations opers:[String]) throws -> (add:[String], oper:[String]) {
         
         var index = 0
         var addComps:[String]  = []
@@ -166,7 +168,7 @@ public class SimpleStringParser: NSObject {
         
         var lastWasAdditionOrSubtraction = false
         
-        operatorLoop : for (_, curOperator) in opers.enumerate() {
+        operatorLoop : for (_, curOperator) in opers.enumerated() {
             
             let curString = comps[index]
             let nexString = comps[index + 1]
@@ -175,12 +177,12 @@ public class SimpleStringParser: NSObject {
             
             if (optional_curValue == nil) {
                 
-                let validError = self.getErrorForCode(ParseError.MissingVariable(curString))
+                let validError = self.getErrorForCode(ParseError.missingVariable(curString))
                 throw validError
                 
             } else if (optional_nexValue == nil) {
                 
-                let validError = self.getErrorForCode(ParseError.MissingVariable(nexString))
+                let validError = self.getErrorForCode(ParseError.missingVariable(nexString))
                 throw validError
             }
             
@@ -218,14 +220,14 @@ public class SimpleStringParser: NSObject {
             addComps.append(comps[iii])
             }*/
             return try self.getAdditionSubtractionComponentsFrom(addComps, operations: operComps)
-        } else if let lastComp = comps.last where lastWasAdditionOrSubtraction {
+        } else if let lastComp = comps.last , lastWasAdditionOrSubtraction {
             addComps.append(lastComp)
         }
         
         return (addComps, operComps)
     }//get next components
     
-    private func getNextValueForIndex(iii:Int, curOperator:String, addComps:[String], final:VariableType) throws -> CGFloat {
+    fileprivate func getNextValueForIndex(_ iii:Int, curOperator:String, addComps:[String], final:VariableType) throws -> CGFloat {
         
         if let _ = self.valueForString(addComps[iii]) {
             
@@ -244,29 +246,29 @@ public class SimpleStringParser: NSObject {
                 return finalValue
             } else {
                 
-                let validError = self.getErrorForCode(ParseError.MissingVariable(addComps[iii + 1]))
+                let validError = self.getErrorForCode(ParseError.missingVariable(addComps[iii + 1]))
                 throw validError
             }// -- nextValue
             
         } else {
             
-            let validError = self.getErrorForCode(ParseError.MissingVariable(addComps[iii]))
+            let validError = self.getErrorForCode(ParseError.missingVariable(addComps[iii]))
             throw validError
         }// -- curValue
         
     }//get next value for index
     
-    private func getErrorForCode(code:ParseError) -> NSError {
+    fileprivate func getErrorForCode(_ code:ParseError) -> NSError {
         
         switch code {
-        case .MissingVariable(let key):
-            var userInfo:[NSObject:AnyObject] = [:/*SimpleStringParser.MissingVariableKey:key*/]
+        case .missingVariable(let key):
+            var userInfo:[AnyHashable: Any] = [:/*SimpleStringParser.MissingVariableKey:key*/]
             userInfo[NSLocalizedDescriptionKey] = "Invalid Variable"
             userInfo[NSLocalizedFailureReasonErrorKey] = "The variable \"\(key)\" does not exist."
             let error = NSError(domain: SimpleStringParser.ParseErrorDomain, code: -1, userInfo: userInfo)
             return error
-        case .TooManyOperations:
-            var userInfo:[NSObject:AnyObject] = [:]
+        case .tooManyOperations:
+            var userInfo:[AnyHashable: Any] = [:]
             userInfo[NSLocalizedDescriptionKey] = "Too Many Operations"
             userInfo[NSLocalizedFailureReasonErrorKey] = "The amount of operations equaled or exceeded the amount of numbers."
             userInfo[NSLocalizedRecoverySuggestionErrorKey] = "Make sure all operations are surrounded by numbers and that all operations are binary (i.e. no unary minus)."
@@ -277,14 +279,14 @@ public class SimpleStringParser: NSObject {
     }//get error for code
     
     
-    public class func stringIsNumber(string:String) -> Bool {
+    open class func stringIsNumber(_ string:String) -> Bool {
         
         struct StaticNumericCharacters {
-            static let numericCharacters = NSCharacterSet(charactersInString: "0123456789.")
+            static let numericCharacters = CharacterSet(charactersIn: "0123456789.")
         }
         
         for cur in string.utf16 {
-            if (!StaticNumericCharacters.numericCharacters.characterIsMember(cur)) {
+            if (!StaticNumericCharacters.numericCharacters.contains(UnicodeScalar(cur)!)) {
                 return false
             }
         }
@@ -293,7 +295,7 @@ public class SimpleStringParser: NSObject {
     }//check if string is a number
     
     ///Checks if string is a single number, or just uses CGSizeFromString.
-    public class func sizeFromString(string:String) -> CGSize {
+    open class func sizeFromString(_ string:String) -> CGSize {
         if SimpleStringParser.stringIsNumber(string) {
             return CGSize(square: string.getCGFloatValue())
         } else {

@@ -11,15 +11,15 @@ import Foundation
 
 extension SCCloudSingleton {
     
-    public func arrayForKey(key:String) -> [AnyObject]? {
-        return NSUbiquitousKeyValueStore.defaultStore().arrayForKey(key)
+    public func arrayForKey(_ key:String) -> [AnyObject]? {
+        return NSUbiquitousKeyValueStore.default().array(forKey: key) as [AnyObject]?
     }
     
-    public func setArray(array:[AnyObject]?, forKey key:String) {
-        NSUbiquitousKeyValueStore.defaultStore().setArray(array, forKey: key)
+    public func setArray(_ array:[AnyObject]?, forKey key:String) {
+        NSUbiquitousKeyValueStore.default().set(array, forKey: key)
     }
     
-    public func boolArrayForKey(key:String) -> [BoolList.BoolType]? {
+    public func boolArrayForKey(_ key:String) -> [BoolList.BoolType]? {
         if let array = self.arrayForKey(key) as? [String] {
             return self.boolsFromStrings(array)
         } else {
@@ -27,11 +27,11 @@ extension SCCloudSingleton {
         }
     }
     
-    public func setBoolArray(array:[BoolList.BoolType], forKey key:String) {
-        self.setArray(self.stringsFromBools(array), forKey: key)
+    public func setBoolArray(_ array:[BoolList.BoolType], forKey key:String) {
+        self.setArray(self.stringsFromBools(array) as [AnyObject]?, forKey: key)
     }
     
-    public func stringsFromBools(boolValues:[BoolList.BoolType]) -> [String] {
+    public func stringsFromBools(_ boolValues:[BoolList.BoolType]) -> [String] {
         var strs:[String] = []
         for cur in boolValues {
             strs.append("\(cur)")
@@ -39,7 +39,7 @@ extension SCCloudSingleton {
         return strs
     }
     
-    public func boolsFromStrings(stringValues:[String]) -> [BoolList.BoolType] {
+    public func boolsFromStrings(_ stringValues:[String]) -> [BoolList.BoolType] {
         var bools:[BoolList.BoolType] = []
         for cur in stringValues {
             bools.append(BoolList.BoolType((cur as NSString).integerValue))

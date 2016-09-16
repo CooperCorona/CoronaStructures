@@ -23,7 +23,7 @@ extension CGRect {
      corresponding to the percentage across the rectangle.
      - returns: The interpolated point inside the rectangle
      */
-    public func interpolate(point:CGPoint) -> CGPoint {
+    public func interpolate(_ point:CGPoint) -> CGPoint {
         return CGPoint(x: linearlyInterpolate(point.x, left: self.minX, right: self.maxX), y: linearlyInterpolate(point.y, left: self.minY, right: self.maxY))
     }
     

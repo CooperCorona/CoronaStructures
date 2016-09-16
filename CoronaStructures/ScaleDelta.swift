@@ -13,22 +13,22 @@
 #endif
 import CoronaConvenience
 
-public class ScaleDelta: NSObject {
+open class ScaleDelta: NSObject {
    
     // MARK: - Properties
     
-    private var initialScale:CGFloat = 1.0
-    private var internalScale:CGFloat = 1.0
-    public var currentScale:CGFloat { return self.internalScale }
+    fileprivate var initialScale:CGFloat = 1.0
+    fileprivate var internalScale:CGFloat = 1.0
+    open var currentScale:CGFloat { return self.internalScale }
     
-    public var minimumScale:CGFloat = 0.0 {
+    open var minimumScale:CGFloat = 0.0 {
         didSet {
             if (self.internalScale < self.minimumScale) {
                 self.internalScale = self.minimumScale
             }
         }
     }
-    public var maximumScale:CGFloat = 1.0 {
+    open var maximumScale:CGFloat = 1.0 {
         didSet {
             if (self.internalScale < self.maximumScale) {
                 self.internalScale = self.maximumScale
@@ -38,7 +38,7 @@ public class ScaleDelta: NSObject {
     
     ///A float value in range [0.0, 1.0] to scale, where 0.0 maps to *minimumScale* and 1.0 maps to *maximumScale*.
     ///Values in between are linearly interpolated (if *minimumScale* == *maximumScale*, value is 1.0).
-    public var percent:CGFloat {
+    open var percent:CGFloat {
         get {
             if self.minimumScale ~= self.maximumScale {
                 return 1.0
@@ -62,13 +62,13 @@ public class ScaleDelta: NSObject {
     // MARK: - Logic
     
     #if os(iOS)
-    public func handlePinch(sender:UIPinchGestureRecognizer) {
+    open func handlePinch(_ sender:UIPinchGestureRecognizer) {
         
         switch sender.state {
-        case .Began, .Changed:
+        case .began, .changed:
             self.internalScale = self.initialScale * sender.scale
             break
-        case .Ended, .Cancelled:
+        case .ended, .cancelled:
             self.initialScale = self.internalScale
             break
         default:
@@ -79,7 +79,7 @@ public class ScaleDelta: NSObject {
     }//handle pinch
     #endif
     
-    public func setExtremaWithSize(size:CGSize, inSize:CGSize) {
+    open func setExtremaWithSize(_ size:CGSize, inSize:CGSize) {
         
         if size.width <= inSize.width && size.height <= inSize.height {
             self.minimumScale = 1.0

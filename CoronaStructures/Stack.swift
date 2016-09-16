@@ -25,7 +25,7 @@ public struct Stack<T>: CustomStringConvertible {
     
     // MARK: - Properties
     
-    private var array:[T] = []
+    fileprivate var array:[T] = []
     
     ///Number of items on stack.
     public var count:Int { return self.array.count }
@@ -48,7 +48,7 @@ public struct Stack<T>: CustomStringConvertible {
     
     - parameter value: The value to push.
     */
-    public mutating func push(value:T) {
+    public mutating func push(_ value:T) {
         self.array.append(value)
     }
     

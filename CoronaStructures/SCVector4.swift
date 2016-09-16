@@ -86,12 +86,12 @@ public struct SCVector4: CustomStringConvertible {
     
     public init(string:String) {
         
-        let comps = (string as NSString).componentsSeparatedByString(", ")
+        let comps = (string as NSString).components(separatedBy: ", ")
         if (comps.count >= 3) {
             
-            let x = comps[0].getCGFloatValue() ?? 0.0
-            let y = comps[1].getCGFloatValue() ?? 0.0
-            let z = comps[2].getCGFloatValue() ?? 0.0
+            let x = comps[0].getCGFloatValue()
+            let y = comps[1].getCGFloatValue()
+            let z = comps[2].getCGFloatValue()
             
             var w:CGFloat = 1.0
             if (comps.count >= 4) {
@@ -123,7 +123,7 @@ public struct SCVector4: CustomStringConvertible {
         return SCVector4(xValue: x / l, yValue: y / l, zValue: z / l, wValue: w / l)
     }//get normalized vector
     
-    public func dot(dotBy:SCVector4) -> CGFloat {
+    public func dot(_ dotBy:SCVector4) -> CGFloat {
         return x * dotBy.x + y * dotBy.y + z * dotBy.z + w * dotBy.w
     }//compute dot product
     
@@ -178,19 +178,19 @@ public func /(left:SCVector4, right:SCVector4) -> SCVector4 {
 
 
 //Equals
-public func +=(inout left:SCVector4, right:SCVector4) {
+public func +=(left:inout SCVector4, right:SCVector4) {
     left = left + right
 }//plus
 
-public func -=(inout left:SCVector4, right:SCVector4) {
+public func -=(left:inout SCVector4, right:SCVector4) {
     left = left - right
 }//minus
 
-public func *=(inout left:SCVector4, right:SCVector4) {
+public func *=(left:inout SCVector4, right:SCVector4) {
     left = left * right
 }//times
 
-public func /=(inout left:SCVector4, right:SCVector4) {
+public func /=(left:inout SCVector4, right:SCVector4) {
     left = left / right
 }//divide
 
@@ -230,19 +230,19 @@ public func /(right:CGFloat, left:SCVector4) -> SCVector4 {
 
 
 //Scalar Equals
-public func +=(inout left:SCVector4, right:CGFloat) {
+public func +=(left:inout SCVector4, right:CGFloat) {
     left = left + right
 }//plus
 
-public func -=(inout left:SCVector4, right:CGFloat) {
+public func -=(left:inout SCVector4, right:CGFloat) {
     left = left - right
 }//minus
 
-public func *=(inout left:SCVector4, right:CGFloat) {
+public func *=(left:inout SCVector4, right:CGFloat) {
     left = left * right
 }//times
 
-public func /=(inout left:SCVector4, right:CGFloat) {
+public func /=(left:inout SCVector4, right:CGFloat) {
     left = left / right
 }//divide
 

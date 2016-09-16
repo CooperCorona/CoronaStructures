@@ -13,18 +13,18 @@
 #endif
 import AVFoundation
 
-public class CCSoundPlayer: NSObject {
+open class CCSoundPlayer: NSObject {
    
     // MARK: - Properties
     
-    private var sounds:[String:CCSound] = [:]
-    private var allKeys:[String] = []
+    fileprivate var sounds:[String:CCSound] = [:]
+    fileprivate var allKeys:[String] = []
     ///The valid keys for all the sounds.
-    public var keys:[String] { return self.allKeys }
+    open var keys:[String] { return self.allKeys }
     
     ///Stores files from .loadFiles so they can be reloaded later if neccessary
-    private var files:[String:String] = [:]
-    private var isDestroyed = false
+    fileprivate var files:[String:String] = [:]
+    fileprivate var isDestroyed = false
     
     /**
     If *false*, then
@@ -33,11 +33,11 @@ public class CCSoundPlayer: NSObject {
     
     doesn't play sounds and always returns *false*.
     */
-    public var enabled = true
+    open var enabled = true
     ///If *false*, then sounds don't play.
-    public var soundsEnabled    = true
+    open var soundsEnabled    = true
     ///If *false*, then music (CCSound objects that are designated at creation as music).
-    public var musicEnabled     = true
+    open var musicEnabled     = true
     
     /**
     Default property dictionaries for files with a given extension.
@@ -45,7 +45,11 @@ public class CCSoundPlayer: NSObject {
     this dictionary, then the sound file's propertyDictionary is set
     to the corresponding dictionary in defaultProperties.
     */
-    public var defaultProperties:[String:[String:String]] = [:]
+    open var defaultProperties:[String:[String:String]] = [:]
+    
+    // MARK: - Singleton
+    
+    public static let sharedInstance:CCSoundPlayer = CCSoundPlayer()
     
     // MARK: - Setup
     
@@ -54,9 +58,9 @@ public class CCSoundPlayer: NSObject {
         
     }//initialize
     
-    public func loadData(data:[[String:String]], musicExtensions:[String]) {
+    open func loadData(_ data:[[String:String]], musicExtensions:[String]) {
         
-        func isMusic(file:String) -> Bool {
+        func isMusic(_ file:String) -> Bool {
             for musicExtension in musicExtensions {
                 if file.hasSuffix(musicExtension) {
                     return true
@@ -67,7 +71,7 @@ public class CCSoundPlayer: NSObject {
         
         var files:[String:String] = [:]
         for dict in data {
-            guard let key = dict["Key"], file = dict["File"] else {
+            guard let key = dict["Key"], let file = dict["File"] else {
                 continue
             }
             files[key] = file
@@ -99,7 +103,7 @@ public class CCSoundPlayer: NSObject {
     want the files to be called, the objects are what the paths
     of the files are.
     */
-    public func loadFiles(files:[String:String]) {
+    open func loadFiles(_ files:[String:String]) {
         
         self.files = files
         
@@ -116,7 +120,7 @@ public class CCSoundPlayer: NSObject {
         
     }//load files
     
-    private func propertyDictForFile(file:String) -> [String:String]? {
+    fileprivate func propertyDictForFile(_ file:String) -> [String:String]? {
         for (key, dict) in self.defaultProperties {
             if file.hasSuffix(key) {
                 return dict
@@ -133,9 +137,9 @@ public class CCSoundPlayer: NSObject {
     of the files are.
     :param: onQueue What dispatch queue to load on.
     */
-    public func loadFiles(files:[String:String], onQueue:dispatch_queue_t) {
+    open func loadFiles(_ files:[String:String], onQueue:DispatchQueue) {
         
-        dispatch_async(onQueue) { [unowned self] in
+        onQueue.async { [unowned self] in
             self.loadFiles(files)
         }
         
@@ -144,7 +148,7 @@ public class CCSoundPlayer: NSObject {
     // MARK: - Logic
     
     ///Returns sound for key (if it exists).
-    public subscript(key:String) -> CCSound? {
+    open subscript(key:String) -> CCSound? {
         return self.sounds[key]
     }
     
@@ -154,7 +158,7 @@ public class CCSoundPlayer: NSObject {
     :param: _ The key of the sound to play.
     :returns: true if the sound will play, false otherwise.
     */
-    public func playSound(key:String) -> Bool {
+    open func playSound(_ key:String) -> Bool {
         
         if !self.enabled {
             return false
@@ -168,7 +172,7 @@ public class CCSoundPlayer: NSObject {
                 return false
             }
             
-            sound.play()
+            let _ = sound.play()
             return true
         } else {
             return false
@@ -182,7 +186,7 @@ public class CCSoundPlayer: NSObject {
     :param: atVolume The volume to play the sound at.
     :returns: true if the sound will play, false otherwise.
     */
-    public func playSound(key:String, atVolume volume:CGFloat) -> Bool {
+    open func playSound(_ key:String, atVolume volume:CGFloat) -> Bool {
       
         if !self.enabled {
             return false
@@ -197,20 +201,20 @@ public class CCSoundPlayer: NSObject {
     
     
     ///Purges sounds from memory. Use .restoreSounds() to reload them.
-    public func destroySounds() {
+    open func destroySounds() {
         if (self.isDestroyed) {
             return
         }
         
         autoreleasepool() { [unowned self] in
-            self.sounds.removeAll(keepCapacity: false)
+            self.sounds.removeAll(keepingCapacity: false)
         }
         
         self.isDestroyed = true
     }
     
     ///Only reloads sounds if necessary.
-    public func restoreSounds() {
+    open func restoreSounds() {
         if (self.isDestroyed) {
             self.loadFiles(self.files)
             self.isDestroyed = false
@@ -221,14 +225,14 @@ public class CCSoundPlayer: NSObject {
      Stops playing a specific sound. Returns true if the sound was stopped
      and false if the sound was nil or if the sound was not stopped.
      */
-    public func stopSound(key:String) -> Bool {
+    open func stopSound(_ key:String) -> Bool {
         return self.sounds[key]?.stop() ?? false
     }
     
     ///Stops playing all sounds.
-    public func stopAllSounds() {
+    open func stopAllSounds() {
         for (_, sound) in self.sounds {
-            sound.stop()
+            let _ = sound.stop()
         }
         
     }
@@ -237,21 +241,6 @@ public class CCSoundPlayer: NSObject {
 
 extension CCSoundPlayer {
     
-    // MARK: - Singleton
-    
-    public class var sharedInstance:CCSoundPlayer {
-        struct StaticInstance {
-            static var instance:CCSoundPlayer! = nil
-            static var onceToken:dispatch_once_t = 0
-        }
-        
-        dispatch_once(&StaticInstance.onceToken) {
-            StaticInstance.instance = CCSoundPlayer()
-        }
-        
-        return StaticInstance.instance
-    }
-    
     /**
     Gets sound for corresponding key.
 
@@ -259,7 +248,7 @@ extension CCSoundPlayer {
     :returns: The sound corresponding to the given key.
     If the sound doesn't exist, return nil.
     */
-    public class func soundForKey(key:String) -> CCSound? {
+    public class func soundForKey(_ key:String) -> CCSound? {
         return CCSoundPlayer.sharedInstance[key]
     }
     
@@ -269,7 +258,7 @@ extension CCSoundPlayer {
     :param: _ The key of the sound to play.
     :returns: true if the sound will play, false otherwise.
     */
-    public class func playSound(key:String) -> Bool {
+    public class func playSound(_ key:String) -> Bool {
         return CCSoundPlayer.sharedInstance.playSound(key)
     }
     
@@ -280,7 +269,7 @@ extension CCSoundPlayer {
     :param: atVolume The volume to play the sound at.
     :returns: true if the sound will play, false otherwise.
     */
-    public class func playSound(key:String, atVolume volume:CGFloat) -> Bool {
+    public class func playSound(_ key:String, atVolume volume:CGFloat) -> Bool {
         return CCSoundPlayer.sharedInstance.playSound(key, atVolume: volume)
     }
     
@@ -288,7 +277,7 @@ extension CCSoundPlayer {
     Stops playing a specific sound. Returns true if the sound was stopped
     and false if the sound was nil or if the sound was not stopped.
     */
-    public class func stopSound(key:String) -> Bool {
+    public class func stopSound(_ key:String) -> Bool {
         return CCSoundPlayer.sharedInstance.sounds[key]?.stop() ?? false
     }
     
@@ -303,18 +292,18 @@ extension CCSoundPlayer {
      - parameter dict: The default property dictionary.
      - paramter forExtension: The extension of a sound file that should use the given dictionary.
     */
-    public class func set(forExtension:String, forPropertyDictionary dict:[String:String]) {
+    public class func set(_ forExtension:String, forPropertyDictionary dict:[String:String]) {
         CCSoundPlayer.sharedInstance.defaultProperties[forExtension] = dict
     }
     
 }
 
-extension CCSoundPlayer: SequenceType {
+extension CCSoundPlayer: Sequence {
     
-    public typealias Generator = Array<CCSound>.Generator
+    public typealias Iterator = Array<CCSound>.Iterator
     
-    public func generate() -> Generator {
-        return self.sounds.map() { $0.1 } .generate()
+    public func makeIterator() -> Iterator {
+        return self.sounds.map() { $0.1 } .makeIterator()
     }
     
 }

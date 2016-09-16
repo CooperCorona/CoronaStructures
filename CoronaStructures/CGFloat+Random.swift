@@ -20,11 +20,11 @@ extension CGFloat {
         return CGFloat(drand48())
     }
     
-    public static func randomBetween(lower:CGFloat, and upper:CGFloat) -> CGFloat {
+    public static func randomBetween(_ lower:CGFloat, and upper:CGFloat) -> CGFloat {
         return linearlyInterpolate(CGFloat.random(), left: lower, right: upper)
     }
     
-    public static func randomMiddle(middle:CGFloat, range:CGFloat) -> CGFloat {
+    public static func randomMiddle(_ middle:CGFloat, range:CGFloat) -> CGFloat {
         return linearlyInterpolate(CGFloat.random(), left: middle - range / 2.0, right: middle + range / 2.0)
     }
     

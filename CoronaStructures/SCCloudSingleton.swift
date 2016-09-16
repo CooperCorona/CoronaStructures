@@ -11,55 +11,55 @@ import UIKit
 import CloudKit
 
 public typealias CloudBlock = (identifier:String, block:() -> ())
-public class SCCloudSingleton: NSObject {
+open class SCCloudSingleton: NSObject {
 
-    private var ubiquityToken:AnyObject? = nil
-    private var iCloudEnabled = false
-    public var iCloudIsEnabled:Bool { return self.iCloudEnabled }
+    fileprivate var ubiquityToken:AnyObject? = nil
+    fileprivate var iCloudEnabled = false
+    open var iCloudIsEnabled:Bool { return self.iCloudEnabled }
     
-    private var storeChangedBlocks:[String:() -> ()] = [:]
-    private var identityChangedBlocks:[String:() -> ()] = [:]
+    fileprivate var storeChangedBlocks:[String:() -> ()] = [:]
+    fileprivate var identityChangedBlocks:[String:() -> ()] = [:]
     
     public override init() {
         
-        self.ubiquityToken = NSFileManager.defaultManager().ubiquityIdentityToken
+        self.ubiquityToken = FileManager.default.ubiquityIdentityToken
         self.iCloudEnabled = self.ubiquityToken !== nil
         
         super.init()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SCCloudSingleton.ubiquityIdentityTokenChanged(_:)), name: NSUbiquityIdentityDidChangeNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SCCloudSingleton.keyValueStoreChanged(_:)), name: NSUbiquitousKeyValueStoreDidChangeExternallyNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SCCloudSingleton.ubiquityIdentityTokenChanged(_:)), name: NSNotification.Name.NSUbiquityIdentityDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SCCloudSingleton.keyValueStoreChanged(_:)), name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: nil)
     }//initialize
     
-    public subscript(key:String) -> AnyObject? {
+    open subscript(key:String) -> AnyObject? {
         get {
-            return NSUbiquitousKeyValueStore.defaultStore().objectForKey(key)
+            return NSUbiquitousKeyValueStore.default().object(forKey: key) as AnyObject?
         }
         set {
-            NSUbiquitousKeyValueStore.defaultStore().setObject(newValue, forKey: key)
+            NSUbiquitousKeyValueStore.default().set(newValue, forKey: key)
         }
     }
     
-    public func addStoreChangedBlock(block:CloudBlock) {
+    open func addStoreChangedBlock(_ block:CloudBlock) {
         self.storeChangedBlocks[block.identifier] = block.block
     }//add block
     
-    public func addIdentityChangedBlock(block:CloudBlock) {
+    open func addIdentityChangedBlock(_ block:CloudBlock) {
         self.identityChangedBlocks[block.identifier] = block.block
     }//add block
     
-    public func removeStoreChangedBlock(identifier:String) {
+    open func removeStoreChangedBlock(_ identifier:String) {
         self.storeChangedBlocks[identifier] = nil
     }//remove block
     
-    public func removeIdentityChangedBlock(identifier:String) {
+    open func removeIdentityChangedBlock(_ identifier:String) {
         self.identityChangedBlocks[identifier] = nil
     }//remove block
     
     
-    public func ubiquityIdentityTokenChanged(notification:NSNotification) {
+    open func ubiquityIdentityTokenChanged(_ notification:Notification) {
         
-        self.ubiquityToken = NSFileManager.defaultManager().ubiquityIdentityToken
+        self.ubiquityToken = FileManager.default.ubiquityIdentityToken
         self.iCloudEnabled = self.ubiquityToken !== nil
         
         
@@ -69,7 +69,7 @@ public class SCCloudSingleton: NSObject {
         
     }//ubiquity identity token changed
     
-    public func keyValueStoreChanged(notification:NSNotification) {
+    open func keyValueStoreChanged(_ notification:Notification) {
         
         for (_, block) in self.storeChangedBlocks {
             block()
@@ -78,24 +78,24 @@ public class SCCloudSingleton: NSObject {
     }//ubiquitous key value store changed
     
     func synchronizeKeyValueStore() -> Bool {
-        return NSUbiquitousKeyValueStore.defaultStore().synchronize()
+        return NSUbiquitousKeyValueStore.default().synchronize()
     }
     
     
     func deleteKeyValueStore() {
         
-        let kvStore = NSUbiquitousKeyValueStore.defaultStore()
+        let kvStore = NSUbiquitousKeyValueStore.default()
         let dict = kvStore.dictionaryRepresentation
         
-        for (key, value) in dict {
-            kvStore.removeObjectForKey(key as! String)
+        for (key, _) in dict {
+            kvStore.removeObject(forKey: key )
         }
         
     }//delete key value store
     
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
 }
