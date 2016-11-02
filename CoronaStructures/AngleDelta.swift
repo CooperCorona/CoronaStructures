@@ -69,6 +69,14 @@ open class AngleDelta: NSObject {
         
     }//constrain angle
     
+    open class func makePositive(angle input:CGFloat) -> CGFloat {
+        var angle = input
+        while angle < 0.0 {
+            angle += CGFloat(2.0 * M_PI)
+        }
+        return angle
+    }
+    
 }
 
 public extension CGFloat {

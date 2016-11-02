@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC1ADA4B1DBD275D00201A32 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1ADA4A1DBD275D00201A32 /* Queue.swift */; };
 		DC7428E61D7F44AC001AF8E1 /* BoolList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7428D91D7F44AC001AF8E1 /* BoolList.swift */; };
 		DC7428E71D7F44AC001AF8E1 /* BoolList2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7428DA1D7F44AC001AF8E1 /* BoolList2D.swift */; };
 		DC7428E81D7F44AC001AF8E1 /* CCSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7428DB1D7F44AC001AF8E1 /* CCSound.swift */; };
@@ -51,6 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DC1ADA4A1DBD275D00201A32 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		DC7428CE1D7F4446001AF8E1 /* CoronaStructures.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoronaStructures.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC7428D31D7F4447001AF8E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC7428D91D7F44AC001AF8E1 /* BoolList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoolList.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				DC7428E01D7F44AC001AF8E1 /* IntPoint+Operations.swift */,
 				DC7429221D7F5572001AF8E1 /* LinearInterpolation.swift */,
 				DC7429241D7F55AD001AF8E1 /* LinearInterpolationExtensions.swift */,
+				DC1ADA4A1DBD275D00201A32 /* Queue.swift */,
 				DC74291E1D7F49AB001AF8E1 /* RotationDelta.swift */,
 				DC7429201D7F49B1001AF8E1 /* ScaleDelta.swift */,
 				DC99DD691D849AD400094BE1 /* SCCloudSingleton.swift */,
@@ -283,6 +286,7 @@
 				DC7429161D7F45A1001AF8E1 /* SCMatrix4Array.swift in Sources */,
 				DC7429231D7F5572001AF8E1 /* LinearInterpolation.swift in Sources */,
 				DC7428EB1D7F44AC001AF8E1 /* IntPoint.swift in Sources */,
+				DC1ADA4B1DBD275D00201A32 /* Queue.swift in Sources */,
 				DC7429251D7F55AD001AF8E1 /* LinearInterpolationExtensions.swift in Sources */,
 				DC7429151D7F45A1001AF8E1 /* SCMatrix4+Transformation.swift in Sources */,
 				DC7429211D7F49B1001AF8E1 /* ScaleDelta.swift in Sources */,
