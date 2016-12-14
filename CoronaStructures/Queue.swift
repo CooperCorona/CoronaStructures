@@ -55,7 +55,7 @@ public struct Queue<T>: CustomStringConvertible, ExpressibleByArrayLiteral {
         
     }
     
-    public init<U: Sequence where U.Iterator.Element == T>(iterable:U) {
+    public init<U: Sequence>(iterable:U) where U.Iterator.Element == T {
         for element in iterable.reversed() {
             self.enqueue(element)
         }
