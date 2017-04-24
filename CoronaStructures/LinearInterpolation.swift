@@ -11,6 +11,7 @@
 #else
     import Cocoa
 #endif
+import CoronaConvenience
 
 // MARK: - Interpolatable Protocol
 
@@ -112,4 +113,31 @@ public func trilinearlyInterpolate<T: Interpolatable>(_ mid:SCVector3, values:[T
     }
     
     return trilinearlyInterpolate(mid, leftBelowBehind: values[0], rightBelowBehind: values[1], leftAboveBehind: values[2], rightAboveBehind: values[3], leftBelowFront: values[4], rightBelowFront: values[5], leftAboveFront: values[6], rightAboveFront: values[7])
+}
+
+private struct TriangleLineSegment {
+    var point1:CGPoint
+    var point2:CGPoint
+    var length:CGFloat { return self.point1.distanceFrom(self.point2) }
+    
+    func distance(from point:CGPoint) -> CGFloat {
+        if self.point1.x ~= self.point2.x {
+            return abs(point.x - self.point1.x)
+        }
+        let a = self.point2.y - self.point1.y
+        let b = self.point2.x - self.point1.x
+        let c = self.point2.x * self.point1.y - self.point1.x * self.point2.y
+        return abs(a * point.x - b * point.y + c) / sqrt(a * a + b * b)
+    }
+}
+
+public func triangularlyInterpolate<T: Interpolatable>(mid:CGPoint, vertex1:CGPoint, value1:T, vertex2:CGPoint, value2:T, vertex3:CGPoint, value3:T) -> T {
+    let t1 = TriangleLineSegment(point1: vertex1, point2: vertex2)
+    let t2 = TriangleLineSegment(point1: vertex2, point2: vertex3)
+    let t3 = TriangleLineSegment(point1: vertex3, point2: vertex1)
+    let area1 = t2.length * t2.distance(from: mid) / 2.0
+    let area2 = t3.length * t3.distance(from: mid) / 2.0
+    let area3 = t1.length * t1.distance(from: mid) / 2.0
+    let area = area1 + area2 + area3
+    return (area1 / area) * value1 + (area2 / area) * value2 + (area3 / area) * value3
 }
