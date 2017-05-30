@@ -27,5 +27,9 @@ extension CGFloat {
     public static func randomMiddle(_ middle:CGFloat, range:CGFloat) -> CGFloat {
         return linearlyInterpolate(CGFloat.random(), left: middle - range / 2.0, right: middle + range / 2.0)
     }
+
+    public static func randomAngle() -> CGFloat {
+        return CGFloat.randomMiddle(0.0, range: 2.0 * CGFloat.pi)
+    }
     
 }
