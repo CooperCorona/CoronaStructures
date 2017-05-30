@@ -38,6 +38,7 @@
 		DC7429321D7F58E0001AF8E1 /* CoronaConvenience.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC7429311D7F58D6001AF8E1 /* CoronaConvenience.framework */; };
 		DC99DD6B1D849AD400094BE1 /* SCCloudSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC99DD691D849AD400094BE1 /* SCCloudSingleton.swift */; };
 		DC99DD6C1D849AD400094BE1 /* SCCloudSingleton+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC99DD6A1D849AD400094BE1 /* SCCloudSingleton+Convenience.swift */; };
+		DCA41A691EDCE61600DE5F3A /* WeightedRandomBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA41A681EDCE61600DE5F3A /* WeightedRandomBag.swift */; };
 		DCC50CCA1D81EDB3007092CA /* AnimationDelta.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC50CC91D81EDB3007092CA /* AnimationDelta.swift */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +86,7 @@
 		DC74292C1D7F58D6001AF8E1 /* CoronaConvenience.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CoronaConvenience.xcodeproj; path = ../CoronaConvenience/CoronaConvenience.xcodeproj; sourceTree = "<group>"; };
 		DC99DD691D849AD400094BE1 /* SCCloudSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCCloudSingleton.swift; sourceTree = "<group>"; };
 		DC99DD6A1D849AD400094BE1 /* SCCloudSingleton+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SCCloudSingleton+Convenience.swift"; sourceTree = "<group>"; };
+		DCA41A681EDCE61600DE5F3A /* WeightedRandomBag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeightedRandomBag.swift; sourceTree = "<group>"; };
 		DCC50CC91D81EDB3007092CA /* AnimationDelta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationDelta.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -142,6 +144,7 @@
 				DC7428E11D7F44AC001AF8E1 /* SimpleStringParser.swift */,
 				DC7428E21D7F44AC001AF8E1 /* Stack.swift */,
 				DC7429281D7F5612001AF8E1 /* UIColor+Vectors.swift */,
+				DCA41A681EDCE61600DE5F3A /* WeightedRandomBag.swift */,
 				DC7428E51D7F44AC001AF8E1 /* XMLFileHandler.swift */,
 				DC7428D31D7F4447001AF8E1 /* Info.plist */,
 			);
@@ -280,6 +283,7 @@
 				DC7429291D7F5612001AF8E1 /* UIColor+Vectors.swift in Sources */,
 				DC74292B1D7F5668001AF8E1 /* CGFloat+Random.swift in Sources */,
 				DC7429181D7F45A1001AF8E1 /* SCVector3+Color.swift in Sources */,
+				DCA41A691EDCE61600DE5F3A /* WeightedRandomBag.swift in Sources */,
 				DC7428E91D7F44AC001AF8E1 /* CCSoundPlayer.swift in Sources */,
 				DC74291B1D7F45A1001AF8E1 /* SCVector4+Color.swift in Sources */,
 				DC7428EF1D7F44AC001AF8E1 /* Stack.swift in Sources */,
