@@ -36,3 +36,27 @@ extension CGRect {
     
     
 }
+
+extension Sequence where Iterator.Element: Interpolatable {
+    
+    public func average(_ defaultValue:Iterator.Element) -> Iterator.Element {
+        var i = 0
+        var total = defaultValue
+        //Rather than using .reduce, we manually unroll
+        //it so we can keep track of the index, which
+        //lets us find the count (which sequences don't
+        //have to keep track of).
+        for value in self {
+            total = total + value
+            i += 1
+        }
+        guard i > 0 else {
+            return defaultValue
+        }
+        //Interpolatable only requires that left-scalar-multiplication
+        //be defined, so we have to convert our division into multiplication.
+        let count = 1.0 / CGFloat(i)
+        return count * total
+    }
+    
+}
