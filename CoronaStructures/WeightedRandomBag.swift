@@ -7,7 +7,9 @@
 //
 
 import Foundation
-
+#if os(iOS)
+    import UIKit
+#endif
 /**
  Defines a collection of elements with functionality to
  access random elements. Each element can be weighted
