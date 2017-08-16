@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		DC1ADA4B1DBD275D00201A32 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1ADA4A1DBD275D00201A32 /* Queue.swift */; };
+		DC66C0CE1F439DC00097AB9C /* Heap.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC66C0CD1F439DC00097AB9C /* Heap.swift */; };
+		DC66C0DE1F43C9B90097AB9C /* Heap_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC66C0DD1F43C9B90097AB9C /* Heap_Tests.swift */; };
 		DC7428E61D7F44AC001AF8E1 /* BoolList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7428D91D7F44AC001AF8E1 /* BoolList.swift */; };
 		DC7428E71D7F44AC001AF8E1 /* BoolList2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7428DA1D7F44AC001AF8E1 /* BoolList2D.swift */; };
 		DC7428E81D7F44AC001AF8E1 /* CCSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7428DB1D7F44AC001AF8E1 /* CCSound.swift */; };
@@ -43,6 +45,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		DC66C0C71F4396310097AB9C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DC74292C1D7F58D6001AF8E1 /* CoronaConvenience.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DC6B68CA1EB59E7700B0FF92;
+			remoteInfo = CoronaConvenience.Tests;
+		};
 		DC7429301D7F58D6001AF8E1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DC74292C1D7F58D6001AF8E1 /* CoronaConvenience.xcodeproj */;
@@ -54,6 +63,10 @@
 
 /* Begin PBXFileReference section */
 		DC1ADA4A1DBD275D00201A32 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		DC66C0CD1F439DC00097AB9C /* Heap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Heap.swift; sourceTree = "<group>"; };
+		DC66C0D51F43C9AB0097AB9C /* CoronaStructures-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CoronaStructures-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC66C0D91F43C9AB0097AB9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC66C0DD1F43C9B90097AB9C /* Heap_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Heap_Tests.swift; sourceTree = "<group>"; };
 		DC7428CE1D7F4446001AF8E1 /* CoronaStructures.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoronaStructures.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC7428D31D7F4447001AF8E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC7428D91D7F44AC001AF8E1 /* BoolList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoolList.swift; sourceTree = "<group>"; };
@@ -91,6 +104,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		DC66C0D21F43C9AB0097AB9C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DC7428CA1D7F4446001AF8E1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -102,11 +122,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DC66C0D61F43C9AB0097AB9C /* CoronaStructures-Tests */ = {
+			isa = PBXGroup;
+			children = (
+				DC66C0DD1F43C9B90097AB9C /* Heap_Tests.swift */,
+				DC66C0D91F43C9AB0097AB9C /* Info.plist */,
+			);
+			path = "CoronaStructures-Tests";
+			sourceTree = "<group>";
+		};
 		DC7428C41D7F4446001AF8E1 = {
 			isa = PBXGroup;
 			children = (
 				DC74292C1D7F58D6001AF8E1 /* CoronaConvenience.xcodeproj */,
 				DC7428D01D7F4447001AF8E1 /* CoronaStructures */,
+				DC66C0D61F43C9AB0097AB9C /* CoronaStructures-Tests */,
 				DC7428CF1D7F4446001AF8E1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -115,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				DC7428CE1D7F4446001AF8E1 /* CoronaStructures.framework */,
+				DC66C0D51F43C9AB0097AB9C /* CoronaStructures-Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -135,6 +166,7 @@
 				DC7428E01D7F44AC001AF8E1 /* IntPoint+Operations.swift */,
 				DC7429221D7F5572001AF8E1 /* LinearInterpolation.swift */,
 				DC7429241D7F55AD001AF8E1 /* LinearInterpolationExtensions.swift */,
+				DC66C0CD1F439DC00097AB9C /* Heap.swift */,
 				DC1ADA4A1DBD275D00201A32 /* Queue.swift */,
 				DC74291E1D7F49AB001AF8E1 /* RotationDelta.swift */,
 				DC7429201D7F49B1001AF8E1 /* ScaleDelta.swift */,
@@ -171,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				DC7429311D7F58D6001AF8E1 /* CoronaConvenience.framework */,
+				DC66C0C81F4396310097AB9C /* CoronaConvenience.Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -188,6 +221,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		DC66C0D41F43C9AB0097AB9C /* CoronaStructures-Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC66C0DA1F43C9AB0097AB9C /* Build configuration list for PBXNativeTarget "CoronaStructures-Tests" */;
+			buildPhases = (
+				DC66C0D11F43C9AB0097AB9C /* Sources */,
+				DC66C0D21F43C9AB0097AB9C /* Frameworks */,
+				DC66C0D31F43C9AB0097AB9C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CoronaStructures-Tests";
+			productName = "CoronaStructures-Tests";
+			productReference = DC66C0D51F43C9AB0097AB9C /* CoronaStructures-Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		DC7428CD1D7F4446001AF8E1 /* CoronaStructures */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DC7428D61D7F4447001AF8E1 /* Build configuration list for PBXNativeTarget "CoronaStructures" */;
@@ -212,9 +262,15 @@
 		DC7428C51D7F4446001AF8E1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Cooper Knaak";
 				TargetAttributes = {
+					DC66C0D41F43C9AB0097AB9C = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = ULGC99Z6NQ;
+						ProvisioningStyle = Automatic;
+					};
 					DC7428CD1D7F4446001AF8E1 = {
 						CreatedOnToolsVersion = 7.3.1;
 						LastSwiftMigration = 0800;
@@ -240,11 +296,19 @@
 			projectRoot = "";
 			targets = (
 				DC7428CD1D7F4446001AF8E1 /* CoronaStructures */,
+				DC66C0D41F43C9AB0097AB9C /* CoronaStructures-Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		DC66C0C81F4396310097AB9C /* CoronaConvenience.Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CoronaConvenience.Tests.xctest;
+			remoteRef = DC66C0C71F4396310097AB9C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		DC7429311D7F58D6001AF8E1 /* CoronaConvenience.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -255,6 +319,13 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		DC66C0D31F43C9AB0097AB9C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DC7428CC1D7F4446001AF8E1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -265,6 +336,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		DC66C0D11F43C9AB0097AB9C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC66C0DE1F43C9B90097AB9C /* Heap_Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DC7428C91D7F4446001AF8E1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -297,6 +376,7 @@
 				DC7429131D7F45A1001AF8E1 /* SCMatrix3Array.swift in Sources */,
 				DC7428F21D7F44AC001AF8E1 /* XMLFileHandler.swift in Sources */,
 				DC7428E71D7F44AC001AF8E1 /* BoolList2D.swift in Sources */,
+				DC66C0CE1F439DC00097AB9C /* Heap.swift in Sources */,
 				DC7429191D7F45A1001AF8E1 /* SCVector3Array.swift in Sources */,
 				DCC50CCA1D81EDB3007092CA /* AnimationDelta.swift in Sources */,
 				DC74291D1D7F49A3001AF8E1 /* AngleDelta.swift in Sources */,
@@ -307,6 +387,43 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		DC66C0DB1F43C9AB0097AB9C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = ULGC99Z6NQ;
+				INFOPLIST_FILE = "CoronaStructures-Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "CooperCorona.CoronaStructures-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		DC66C0DC1F43C9AB0097AB9C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = ULGC99Z6NQ;
+				INFOPLIST_FILE = "CoronaStructures-Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "CooperCorona.CoronaStructures-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 		DC7428D41D7F4447001AF8E1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -450,6 +567,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		DC66C0DA1F43C9AB0097AB9C /* Build configuration list for PBXNativeTarget "CoronaStructures-Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC66C0DB1F43C9AB0097AB9C /* Debug */,
+				DC66C0DC1F43C9AB0097AB9C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		DC7428C81D7F4446001AF8E1 /* Build configuration list for PBXProject "CoronaStructures" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
