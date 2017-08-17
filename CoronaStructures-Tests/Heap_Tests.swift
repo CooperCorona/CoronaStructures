@@ -213,4 +213,41 @@ class Heap_Tests: XCTestCase {
         heap.push(value: 0)
         XCTAssert(heap.index(of: { $0 == 2 }) == 1)
     }
+    
+    ///Tests the performance of adding thousands of random items to a Heap
+    ///and then repeatedly popping the head (the minimum element).
+    func testHeapPerformance() {
+        var heap = Heap<Int>(comparator: { $0 < $1 })
+        self.measure {
+            for element in (0..<10_000).reversed() {
+                heap.push(value: element)
+            }
+            while !heap.isEmpty {
+                let _ = heap.pop()
+            }
+        }
+    }
+    
+    ///Tests the performance of adding thousands of random items to an array
+    ///and then repeatedly popping the first one to use as a comparison to
+    ///the Heap performance test. Note that popping from the heap is guaranteed
+    ///to be the minimum element by definition of the heap, so the minimum
+    ///element must be popped from the array to make the tests consistent.
+    func testArrayPerformance() {
+        var array:[Int] = []
+        self.measure {
+            for element in (0..<10_000).reversed() {
+                array.append(element)
+            }
+            while !array.isEmpty {
+                var minIndex = 0
+                for i in 0..<array.count {
+                    if array[i] < array[minIndex] {
+                        minIndex = i
+                    }
+                }
+                array.remove(at: minIndex)
+            }
+        }
+    }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Heap<T> {
+public struct Heap<T>: CustomStringConvertible {
     
     private var heap:[T] = []
     public let comparator:(T, T) -> Bool
@@ -16,6 +16,8 @@ public struct Heap<T> {
     public var count:Int { return self.heap.count }
     public var isEmpty:Bool { return self.heap.isEmpty }
     
+    public var description:String { return "\(self.heap)" }
+
     public init(comparator:@escaping (T, T) -> Bool) {
         self.comparator = comparator
     }
@@ -136,7 +138,7 @@ public struct Heap<T> {
             return nil
         }
     }
-    
+
 }
 
 extension Heap: IteratorProtocol {
