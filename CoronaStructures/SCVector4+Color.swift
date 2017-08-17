@@ -58,4 +58,16 @@ public extension SCVector4 {
         return rcs[Int(arc4random() % UInt32(rcs.count))]
     }
     
+    public static var fireColors = [
+        SCVector4.fireColor,
+        SCVector4(x: 0.9, y: 0.2, z: 0.4, w: 1.0),
+        SCVector4(x: 0.4, y: 0.9, z: 0.2, w: 1.0),
+        SCVector4(x: 0.2, y: 0.9, z: 0.4, w: 1.0),
+        SCVector4(x: 0.4, y: 0.2, z: 0.9, w: 1.0),
+        SCVector4(x: 0.2, y: 0.4, z: 0.9, w: 1.0)
+    ]
+    public static func randomFireColor() -> SCVector4 {
+        return SCVector4.fireColors.randomElement()!
+    }
+    
 }// SCVector4 + Color (get vector that represents a color)

@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Cooper Knaak. All rights reserved.
 //
 
+import CoronaConvenience
 #if os(iOS)
     import UIKit
 #else
@@ -56,6 +57,18 @@ public extension SCVector3 {
     public static func randomRainbowColor() -> SCVector3 {
         let rcs = SCVector3.rainbowColors
         return rcs[Int(arc4random() % UInt32(rcs.count))]
+    }
+    
+    public static var fireColors = [
+        SCVector3.fireColor,
+        SCVector3(x: 0.9, y: 0.2, z: 0.4),
+        SCVector3(x: 0.4, y: 0.9, z: 0.2),
+        SCVector3(x: 0.2, y: 0.9, z: 0.4),
+        SCVector3(x: 0.4, y: 0.2, z: 0.9),
+        SCVector3(x: 0.2, y: 0.4, z: 0.9)
+    ]
+    public static func randomFireColor() -> SCVector3 {
+        return SCVector3.fireColors.randomElement()!
     }
     
 }// SCVector3 + Color (get vector that represents a color)
