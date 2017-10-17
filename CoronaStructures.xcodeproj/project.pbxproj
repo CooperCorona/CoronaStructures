@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DC1ADA4B1DBD275D00201A32 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1ADA4A1DBD275D00201A32 /* Queue.swift */; };
+		DC6516AE1F967A5F0056079A /* DefaultDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6516AD1F967A5F0056079A /* DefaultDictionary.swift */; };
 		DC66C0CE1F439DC00097AB9C /* Heap.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC66C0CD1F439DC00097AB9C /* Heap.swift */; };
 		DC66C0DE1F43C9B90097AB9C /* Heap_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC66C0DD1F43C9B90097AB9C /* Heap_Tests.swift */; };
 		DC7428E61D7F44AC001AF8E1 /* BoolList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7428D91D7F44AC001AF8E1 /* BoolList.swift */; };
@@ -63,6 +64,7 @@
 
 /* Begin PBXFileReference section */
 		DC1ADA4A1DBD275D00201A32 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		DC6516AD1F967A5F0056079A /* DefaultDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDictionary.swift; sourceTree = "<group>"; };
 		DC66C0CD1F439DC00097AB9C /* Heap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Heap.swift; sourceTree = "<group>"; };
 		DC66C0D51F43C9AB0097AB9C /* CoronaStructures-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CoronaStructures-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC66C0D91F43C9AB0097AB9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				DC7428DB1D7F44AC001AF8E1 /* CCSound.swift */,
 				DC7428DC1D7F44AC001AF8E1 /* CCSoundPlayer.swift */,
 				DC74292A1D7F5668001AF8E1 /* CGFloat+Random.swift */,
+				DC6516AD1F967A5F0056079A /* DefaultDictionary.swift */,
 				DC7428DD1D7F44AC001AF8E1 /* Direction2D.swift */,
 				DC7428DE1D7F44AC001AF8E1 /* IntPoint.swift */,
 				DC7428DF1D7F44AC001AF8E1 /* IntPoint+Iterator.swift */,
@@ -353,6 +356,7 @@
 				DC7428EC1D7F44AC001AF8E1 /* IntPoint+Iterator.swift in Sources */,
 				DC7429171D7F45A1001AF8E1 /* SCVector3.swift in Sources */,
 				DC99DD6C1D849AD400094BE1 /* SCCloudSingleton+Convenience.swift in Sources */,
+				DC6516AE1F967A5F0056079A /* DefaultDictionary.swift in Sources */,
 				DC7428EA1D7F44AC001AF8E1 /* Direction2D.swift in Sources */,
 				DC74291A1D7F45A1001AF8E1 /* SCVector4.swift in Sources */,
 				DC7428E61D7F44AC001AF8E1 /* BoolList.swift in Sources */,
