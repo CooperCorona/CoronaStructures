@@ -170,12 +170,16 @@ public extension SCMatrix4 {
             values.append(Double(cur))
         }
         var N:__CLPK_integer = 4
+        //Duplicate values to prevent exclusive modification errors
+        //on the dgetrf_ and dgetri_ calls below.
+        var M = N
+        var LDA = M
         var pivots:[__CLPK_integer] = [0, 0, 0, 0]
         var workspace:[Double] = [0, 0, 0, 0]
         var error:__CLPK_integer = 0
         
-        dgetrf_(&N, &N, &values, &N, &pivots, &error)
-        dgetri_(&N, &values, &N, &pivots, &workspace, &N, &error)
+        dgetrf_(&N, &M, &values, &LDA, &pivots, &error)
+        dgetri_(&N, &values, &LDA, &pivots, &workspace, &M, &error)
         
         var glValues:[GLfloat] = []
         for cur in values {
@@ -202,12 +206,16 @@ public extension SCMatrix4 {
         }
         
         var N:__CLPK_integer = 3
+        //Duplicate values to prevent exclusive access to memory
+        //errors on the dgetrf_ and dgetri_ calls below.
+        var M = N
+        var LDA = N
         var pivots:[__CLPK_integer] = [0, 0, 0]
         var workspace:[Double] = [0, 0, 0]
         var error:__CLPK_integer = 0
         
-        dgetrf_(&N, &N, &values, &N, &pivots, &error)
-        dgetri_(&N, &values, &N, &pivots, &workspace, &N, &error)
+        dgetrf_(&N, &M, &values, &LDA, &pivots, &error)
+        dgetri_(&N, &values, &LDA, &pivots, &workspace, &M, &error)
         
         var glValues:[GLfloat] = []
         for jjj in 0..<3 {

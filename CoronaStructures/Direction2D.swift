@@ -36,11 +36,11 @@ public enum Direction2D: String, CustomStringConvertible {
         case .Right:
             return 0.0
         case .Up:
-            return +CGFloat(M_PI) / 2.0
+            return +CGFloat.pi / 2.0
         case .Left:
-            return +CGFloat(M_PI)
+            return +CGFloat.pi
         case .Down:
-            return -CGFloat(M_PI) / 2.0
+            return -CGFloat.pi / 2.0
         }
     }
     public var vector:CGPoint {

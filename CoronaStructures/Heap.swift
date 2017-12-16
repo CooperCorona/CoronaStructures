@@ -35,8 +35,11 @@ public struct Heap<T>: CustomStringConvertible {
         }
         
         let returnValue = self.heap[0]
-        self.heap[0] = self.heap[self.count - 1]
-        self.heap.popLast()
+        //Unwrapping the optional is safe because this method
+        //returns nil above if there are less than 2 elements
+        //(so popping is valid, and the corresponding assignment
+        //to the first element is also valid).
+        self.heap[0] = self.heap.popLast()!
         self.heapifyDown(at: 0)
         return returnValue
     }
@@ -79,23 +82,23 @@ public struct Heap<T>: CustomStringConvertible {
         case let (leftIndex?, rightIndex?):
             if self.comparator(self.heap[leftIndex], self.heap[rightIndex]) {
                 if self.comparator(self.heap[leftIndex], self.heap[index]) {
-                    swap(&self.heap[leftIndex], &self.heap[index])
+                    self.heap.swapAt(leftIndex, index)
                     heapifyDown(at: leftIndex)
                 }
             } else {
                 if self.comparator(self.heap[rightIndex], self.heap[index]) {
-                    swap(&self.heap[rightIndex], &self.heap[index])
+                    self.heap.swapAt(rightIndex, index)
                     heapifyDown(at: rightIndex)
                 }
             }
         case let (leftIndex?, nil):
             if self.comparator(self.heap[leftIndex], self.heap[index]) {
-                swap(&self.heap[leftIndex], &self.heap[index])
+                self.heap.swapAt(leftIndex, index)
                 heapifyDown(at: leftIndex)
             }
         case let (nil, rightIndex?):
             if self.comparator(self.heap[rightIndex], self.heap[index]) {
-                swap(&self.heap[rightIndex], &self.heap[index])
+                self.heap.swapAt(rightIndex, index)
                 heapifyDown(at: rightIndex)
             }
         case (nil, nil):
@@ -109,7 +112,7 @@ public struct Heap<T>: CustomStringConvertible {
             return
         }
         if self.comparator(self.heap[index], self.heap[parentIndex]) {
-            swap(&self.heap[index], &self.heap[parentIndex])
+            self.heap.swapAt(index, parentIndex)
             self.heapifyUp(at: parentIndex)
         }
     }

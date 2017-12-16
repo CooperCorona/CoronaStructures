@@ -14,7 +14,7 @@
 
 open class AngleDelta: NSObject {
     
-    open class var π:CGFloat { return CGFloat(M_PI) }
+    open class var π:CGFloat { return CGFloat.pi }
     
     open class func incrementAngle(_ startAngle:CGFloat, toAngle endAngle:CGFloat, delta:CGFloat) -> CGFloat {
     
@@ -59,9 +59,9 @@ open class AngleDelta: NSObject {
     
     open class func constrainAngle(_ angle:CGFloat) -> CGFloat {
     
-        if (angle > CGFloat(M_PI)) {
+        if (angle > CGFloat.pi) {
             return angle - 2.0 * self.π
-        } else if (angle < -CGFloat(M_PI)) {
+        } else if (angle < -CGFloat.pi) {
             return 2.0 * self.π + angle
         } else {
             return angle
@@ -72,7 +72,7 @@ open class AngleDelta: NSObject {
     open class func makePositive(angle input:CGFloat) -> CGFloat {
         var angle = input
         while angle < 0.0 {
-            angle += CGFloat(2.0 * M_PI)
+            angle += 2.0 * CGFloat.pi
         }
         return angle
     }
@@ -83,7 +83,7 @@ public extension CGFloat {
     
     /** Converts this value from radians to degrees.*/
     public func toDegrees() -> CGFloat {
-        return self * 180.0 / CGFloat(M_PI)
+        return self * 180.0 / CGFloat.pi
     }//convert to degrees
     
 }//CGFloat + Convenience

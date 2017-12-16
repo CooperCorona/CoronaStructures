@@ -100,17 +100,22 @@ open class CCSound: NSObject {
                 let url = URL(fileURLWithPath: path)
                 
                 let file = try AVAudioFile(forReading: url/*, error: &loadFileError*/)
-                let buffer = AVAudioPCMBuffer(pcmFormat: file.processingFormat, frameCapacity: AVAudioFrameCount(file.length))
+                if let buffer = AVAudioPCMBuffer(pcmFormat: file.processingFormat, frameCapacity: AVAudioFrameCount(file.length)) {
                 
-                try file.read(into: buffer/*, error: &readFileError*/)
-                
-                self.engine.prepare()
-                try self.engine.start()
-                self.canPlay = true
-                
-                self.file   = file
-                self.buffer = buffer
-                self.state  = .ready
+                    try file.read(into: buffer/*, error: &readFileError*/)
+                    
+                    self.engine.prepare()
+                    try self.engine.start()
+                    self.canPlay = true
+                    
+                    self.file   = file
+                    self.buffer = buffer
+                    self.state  = .ready
+                } else {
+                    self.file = nil
+                    self.buffer = nil
+                    self.canPlay = false
+                }
             } catch {
                 self.file = nil
                 self.buffer = nil

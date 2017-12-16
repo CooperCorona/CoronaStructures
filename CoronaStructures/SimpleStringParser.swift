@@ -262,13 +262,13 @@ open class SimpleStringParser: NSObject {
         
         switch code {
         case .missingVariable(let key):
-            var userInfo:[AnyHashable: Any] = [:/*SimpleStringParser.MissingVariableKey:key*/]
+            var userInfo:[String: Any] = [:/*SimpleStringParser.MissingVariableKey:key*/]
             userInfo[NSLocalizedDescriptionKey] = "Invalid Variable"
             userInfo[NSLocalizedFailureReasonErrorKey] = "The variable \"\(key)\" does not exist."
             let error = NSError(domain: SimpleStringParser.ParseErrorDomain, code: -1, userInfo: userInfo)
             return error
         case .tooManyOperations:
-            var userInfo:[AnyHashable: Any] = [:]
+            var userInfo:[String: Any] = [:]
             userInfo[NSLocalizedDescriptionKey] = "Too Many Operations"
             userInfo[NSLocalizedFailureReasonErrorKey] = "The amount of operations equaled or exceeded the amount of numbers."
             userInfo[NSLocalizedRecoverySuggestionErrorKey] = "Make sure all operations are surrounded by numbers and that all operations are binary (i.e. no unary minus)."
